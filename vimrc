@@ -58,7 +58,7 @@ endif
 "ui
 "set ruler
 "set nu
-set nowrap
+"set nowrap
 set laststatus=2
 "set cmdheight=2
 set fillchars=""
