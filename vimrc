@@ -1,10 +1,9 @@
 set nocompatible
 
 "color 
-set background=dark
 colorscheme candy
+set background=dark
 set t_Co=256
-
 
 if $TERM=='screen-256color'
   autocmd BufEnter * let &titlestring = "[".expand("%:t") ."]" 
@@ -18,6 +17,7 @@ set fillchars=""
 set encoding=utf-8
 set synmaxcol=2048
 set showcmd
+set number
 
 "backup 
 set backup
@@ -69,6 +69,9 @@ set wildignore+=*.o,*.obj,*.so,*.pyc,.git
 "visual
 set showmatch
 
+noremap + ;
+noremap _ ,
+
 let mapleader=","
 
 
@@ -78,6 +81,7 @@ map <F1> <Esc>
 imap <F1> <Esc>
 
 noremap Y y$  
+
 
 vnoremap ; :
 nnoremap ; :
@@ -93,7 +97,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 "leader commands
 nmap <silent> <leader>s :set spell!<CR>
 nmap <silent> <leader>ev :e ~/.vimrc<CR>
-nmap <silent> <leader>sv :so ~/.vimrc<CR>
+nmap <silent> <leader>v :so ~/.vimrc<CR>
 nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>nu :set nu!<CR> 
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
@@ -128,26 +132,21 @@ nmap <leader>bc :BundleClean<CR>
 "Bundle 'Shougo/neocomplcache'
 "Bundle 'wincent/Command-T'
 "Bundle 'vim-scripts/desert-warm-256'
+"Bundle 'kien/ctrlp.vim'
 
 Bundle 'scrooloose/nerdcommenter' 
 Bundle 'tpope/vim-fugitive'       
 Bundle 'tpope/vim-surround'
 Bundle 'Rykka/ColorV'
 Bundle 'gregsexton/MatchTag'
-
 Bundle 'nanotech/jellybeans.vim'
-
-Bundle 'kien/ctrlp.vim'
-
 Bundle 'vim-scripts/git-time-lapse'
 Bundle 'vim-scripts/DrawIt'
-  
-   
 Bundle 'vim-scripts/matchit.zip' 
 Bundle 'mileszs/ack.vim' 
 
 
-Bundle 'mutewinter/LustyJuggler'
+Bundle 'sjbach/lusty'
 "===============================
 let g:LustyJugglerShowKeys   = 1
 let g:LustyJugglerAltTabMode = 1
@@ -159,9 +158,15 @@ Bundle 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'compatible'
 
 
-Bundle 'mutewinter/vim-indent-guides'
+Bundle 'nathanaelkane/vim-indent-guides'
 "====================================
-"let g:indent_guides_enable_on_vim_startup=1 
+let g:indent_guides_auto_colors=0
+let g:indent_guides_enable_on_vim_startup=1 
+hi IndentGuidesEven ctermbg=234
+hi IndentGuidesOdd  ctermbg=233
+
+"hi IndentGuidesEven ctermbg=233
+"hi IndentGuidesOdd  ctermbg=232
 
 
 Bundle 'scrooloose/nerdtree'
@@ -169,7 +174,7 @@ Bundle 'scrooloose/nerdtree'
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 let g:NERDTreeMapOpenVSplit = "s"
 let NERDTreeBookmarksFile="~/.vim/NERDTreeBookmarks"
-let NERDTreeShowBookmarks=1
+let NERDTreeShowBookmarks=2
 let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
             \ '\.ilk$', '^BuildLog.htm$', '\.pdb$', '\.idb$',
             \ '\.embed\.manifest$', '\.embed\.manifest.res$',
@@ -216,3 +221,5 @@ Bundle 'vim-scripts/lbdbq'
 filetype plugin indent on
 
 " " }}} 
+
+
