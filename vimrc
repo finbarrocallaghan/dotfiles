@@ -1,52 +1,8 @@
 set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-
-"plugin bundles 
-
-Bundle 'mutewinter/LustyJuggler'
-
-"ui additions 
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'mutewinter/vim-indent-guides'
-Bundle 'scrooloose/nerdtree'
-
-"commands
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-
-Bundle 'wincent/Command-T'
-Bundle 'Rykka/ColorV'
-Bundle 'gregsexton/MatchTag'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'Shougo/neocomplcache'
-Bundle 'kien/ctrlp.vim'
-
-
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/Gundo'
-Bundle 'vim-scripts/git-time-lapse'
-Bundle 'tpope/vim-fugitive'
-
-Bundle 'vim-scripts/desert-warm-256'
-
-filetype plugin indent on
-" -------------------------
-
-
-let mapleader=","
-call pathogen#infect()
-set shell=/bin/zsh
 
 "color 
-set background=dark
 colorscheme candy
+set background=dark
 set t_Co=256
 
 if $TERM=='screen-256color'
@@ -54,18 +10,14 @@ if $TERM=='screen-256color'
   exe "set title t_ts=\<ESC>k t_fs=\<ESC>\\"
 endif
 
-
 "ui
-"set ruler
-"set nu
-"set nowrap
+set shell=/bin/zsh
 set laststatus=2
-"set cmdheight=2
 set fillchars=""
 set encoding=utf-8
 set synmaxcol=2048
-
-
+set showcmd
+set number
 
 "backup 
 set backup
@@ -76,17 +28,25 @@ set directory=~/.vim/tmp
 syntax enable
 set mousehide
 set autoread
+
 set wildmenu
-set wildmode=longest,list
-set hidden
+set wildmode=longest:list
+
+set wildchar=<Tab>
+set completeopt+=preview
+
+
 set history=900
-set cf
-set clipboard+=unnamed
 set autowrite
-set timeoutlen=350
-set textwidth=100
+set clipboard+=unnamed
+set timeoutlen=750
+
 set formatoptions=crql
 set cpoptions=ces$
+
+
+set hidden
+set confirm
 
 
 "text format
@@ -97,6 +57,7 @@ set autoindent
 set smarttab
 set expandtab
 set backspace=2
+set textwidth=118
 
 "searching
 set ignorecase
@@ -108,27 +69,38 @@ set wildignore+=*.o,*.obj,*.so,*.pyc,.git
 "visual
 set showmatch
 
+noremap + ;
+noremap _ ,
+
+let mapleader=","
 
 
 "bindings
+map - :nohlsearch<cr>
 map <F1> <Esc>
 imap <F1> <Esc>
-nmap K k
-vmap K k
+
 noremap Y y$  
-map - :nohls<cr>
 
 
-command Bp :w<Bar>bp
-command Bn :w<Bar>bn
+vnoremap ; :
+nnoremap ; :
+
+vmap K k
+nmap K k
+
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+"command Bp :w<Bar>bp
+"command Bn :w<Bar>bn
+
 
 "leader commands
 nmap <silent> <leader>s :set spell!<CR>
 nmap <silent> <leader>ev :e ~/.vimrc<CR>
-nmap <silent> <leader>sv :so ~/.vimrc<CR>
+nmap <silent> <leader>v :so ~/.vimrc<CR>
 nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
-
-
+nmap <silent> <leader>nu :set nu!<CR> 
+nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
 
 
 "gui
@@ -139,47 +111,70 @@ set guicursor+=i-ci:ver25-Cursor
 set guicursor+=r-cr:hor20-Cursor
 set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 set guioptions=ac
-
 set diffopt+=iwhite
 
 
-"autocmd BufNewFile,BufRead *.py compiler python 
-"imap <F1> from IPython.Debugger import Tracer; d_h = Tracer()
  
+" " {{{ bundles/plugins etc..
  
-let g:pyflakes_autostart = 0
-let g:pyflakes_use_quickfix = 0
-map <F12> :PyflakesToggle<cr>
+filetype off
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-"indent guides
-"==============
-"let g:indent_guides_enable_on_vim_startup=1 
-
-"vundle
-"=======
-
+Bundle 'gmarik/vundle'
+"=====================
 nmap <leader>bi :BundleInstall<CR>
 nmap <leader>bu :BundleInstall!<CR>
 nmap <leader>bc :BundleClean<CR>
 
 
-"lustyjuggler
-"=============
+"Bundle 'Shougo/neocomplcache'
+"Bundle 'wincent/Command-T'
+"Bundle 'vim-scripts/desert-warm-256'
+"Bundle 'kien/ctrlp.vim'
 
+Bundle 'scrooloose/nerdcommenter' 
+Bundle 'tpope/vim-fugitive'       
+Bundle 'tpope/vim-surround'
+Bundle 'Rykka/ColorV'
+Bundle 'gregsexton/MatchTag'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'vim-scripts/git-time-lapse'
+Bundle 'vim-scripts/DrawIt'
+Bundle 'vim-scripts/matchit.zip' 
+Bundle 'mileszs/ack.vim' 
+
+
+Bundle 'sjbach/lusty'
+"===============================
+let g:LustyJugglerShowKeys   = 1
 let g:LustyJugglerAltTabMode = 1
 nmap <silent> <c-b> :LustyJuggler<CR>
 
+
+Bundle 'Lokaltog/vim-powerline'
+"==============================
+let g:Powerline_symbols = 'compatible'
+
+
+Bundle 'nathanaelkane/vim-indent-guides'
+"====================================
+let g:indent_guides_auto_colors=0
+let g:indent_guides_enable_on_vim_startup=1 
+hi IndentGuidesEven ctermbg=234
+hi IndentGuidesOdd  ctermbg=233
+
+"hi IndentGuidesEven ctermbg=233
+"hi IndentGuidesOdd  ctermbg=232
+
+
+Bundle 'scrooloose/nerdtree'
+"===========================
 nmap <silent> <c-n> :NERDTreeToggle<CR>
-
-
-"nerdtree
-"=========
-
-                    
 let g:NERDTreeMapOpenVSplit = "s"
 let NERDTreeBookmarksFile="~/.vim/NERDTreeBookmarks"
-let NERDTreeShowBookmarks=1
+let NERDTreeShowBookmarks=2
 let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
             \ '\.ilk$', '^BuildLog.htm$', '\.pdb$', '\.idb$',
             \ '\.embed\.manifest$', '\.embed\.manifest.res$',
@@ -190,12 +185,41 @@ function! StartUp()
         NERDTree
     end
 endfunction
-autocmd VimEnter * call StartUp()
+"autocmd VimEnter * call StartUp()
 
 
-"gundo 
-"=======
+Bundle 'finbarrocallaghan/highlights.vim'
+"========================================
+nmap <silent> <leader>1  :Hi 1<CR>
+nmap <silent> <leader>2  :Hi 2<CR>
+nmap <silent> <leader>3  :Hi 3<CR>
+nmap <silent> <leader>4  :Hi 4<CR>
+nmap <silent> <leader>5  :Hi 5<CR>
+nmap <silent> <leader>6  :Hi 6<CR>
+nmap <silent> <leader>7  :Hi 7<CR>
+nmap <silent> <leader>8  :Hi 8<CR>
+nmap <silent> <leader>9  :Hi 9<CR>
+
+
+Bundle 'vim-scripts/Gundo'
+"=========================
 noremap <F5> :GundoToggle<CR> 
 let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
 let g:gundo_close_on_revert = 1
+
+Bundle 'georgexsh/pyflakes-vim'
+"=========================
+let g:pyflakes_autostart = 0
+let g:pyflakes_use_quickfix = 0
+map <F12> :PyflakesToggle<cr>
+
+Bundle 'vim-scripts/lbdbq'
+"=========================
+"only used within mutt
+
+filetype plugin indent on
+
+" " }}} 
+
+
