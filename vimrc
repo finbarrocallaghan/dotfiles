@@ -1,10 +1,12 @@
+"lots of of bits taken from various github rc files and elsewhere
+"basic structure from github.com/gmarik
+ 
 set nocompatible
 
 "color 
 colorscheme candy
 set background=dark
 set t_Co=256
-
 if $TERM=='screen-256color'
   autocmd BufEnter * let &titlestring = "[".expand("%:t") ."]" 
   exe "set title t_ts=\<ESC>k t_fs=\<ESC>\\"
@@ -44,7 +46,6 @@ set timeoutlen=750
 set formatoptions=crql
 set cpoptions=ces$
 
-
 set hidden
 set confirm
 
@@ -74,14 +75,12 @@ noremap _ ,
 
 let mapleader=","
 
-
 "bindings
 map - :nohlsearch<cr>
 map <F1> <Esc>
 imap <F1> <Esc>
 
 noremap Y y$  
-
 
 vnoremap ; :
 nnoremap ; :
@@ -102,7 +101,6 @@ nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>nu :set nu!<CR> 
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
 
-
 "gui
 set guicursor=n-v-c:block-Cursor-blinkon0
 set guicursor+=ve:ver35-Cursor
@@ -112,7 +110,6 @@ set guicursor+=r-cr:hor20-Cursor
 set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 set guioptions=ac
 set diffopt+=iwhite
-
 
  
 " " {{{ bundles/plugins etc..
@@ -208,11 +205,11 @@ let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
 let g:gundo_close_on_revert = 1
 
-Bundle 'georgexsh/pyflakes-vim'
+"Bundle 'georgexsh/pyflakes-vim'
 "=========================
-let g:pyflakes_autostart = 0
-let g:pyflakes_use_quickfix = 0
-map <F12> :PyflakesToggle<cr>
+"let g:pyflakes_autostart = 0
+"let g:pyflakes_use_quickfix = 0
+"map <F12> :PyflakesToggle<cr>
 
 Bundle 'vim-scripts/lbdbq'
 "=========================
