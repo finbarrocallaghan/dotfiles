@@ -83,7 +83,7 @@ alias -g GV='| grep -v -'
 alias -g L='| less'
 
 alias g='git'
-alias s='screen'
+#alias s='screen'
 
 alias tmux='tmux -u'
 alias t='tmux'
