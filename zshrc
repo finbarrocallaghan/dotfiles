@@ -18,6 +18,7 @@ LISTMAX=999
 MAIL=0
 PAGER="less"
 SAVEHIST=50000
+NODE_PATH="/local/focallag/_loc_bin/node-v0.6.15/bin/node"
 
 setopt PROMPT_SUBST
 setopt APPENDHISTORY
@@ -85,9 +86,10 @@ alias -g L='| less'
 alias g='git'
 #alias s='screen'
 
-alias tmux='tmux -u'
-alias t='tmux'
+alias tmux='tmux -u2'
+alias t='tmux -u2'
 alias ts='tmux new -s'
+
 alias tsh='tmux new -s $(basename $PWD)'
 alias tl='tmux ls'
 alias ta='tmux attach -t'
@@ -128,7 +130,7 @@ alias -s txt=$EDITOR
 alias -s dat=$EDITOR
 alias -s cpp=$EDITOR
 alias -s h=$EDITOR
-alias -s py=$EDITOR
+#alias -s py=$EDITOR
 alias -s PKGBUILD=$EDITOR
 
 
@@ -152,7 +154,8 @@ fi
 
 
 # makes notmuch search work in mutt 
-eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)
+# no longer needed since I got perlbrew working :)
+#eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)
 
 #autocompletion.. teamocil
 compctl -g '~/.teamocil/*(:t:r)' teamocil

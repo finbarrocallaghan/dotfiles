@@ -205,6 +205,7 @@ let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
 let g:gundo_close_on_revert = 1
 
+
 "Bundle 'georgexsh/pyflakes-vim'
 "=========================
 "let g:pyflakes_autostart = 0
@@ -214,6 +215,19 @@ let g:gundo_close_on_revert = 1
 Bundle 'vim-scripts/lbdbq'
 "=========================
 "only used within mutt
+
+Bundle 'ivanov/vim-ipython'
+"=========================
+"let g:ipy_perform_mappings=0
+
+Bundle 'jpalardy/vim-slime'
+"=========================
+let g:slime_target = "tmux"
+
+Bundle 'jeetsukumaran/vim-buffersaurus'
+"=====================================
+let g:buffersaurus_autodismiss_on_select = 0
+
 
 filetype plugin indent on
 
