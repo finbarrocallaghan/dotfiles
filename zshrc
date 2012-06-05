@@ -8,10 +8,13 @@ ZSH_THEME="clean"
 COMPLETION_WAITING_DOTS="true"
 plugins=(git git-flow python vi-mode)
 
+fpath=(~/zfunc_test $fpath)
+autoload -Uz hello
+
 source $ZSH/oh-my-zsh.sh
 
 BROWSER="firefox"
-EDITOR="vimx"
+EDITOR="vim"
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
 LISTMAX=999
@@ -95,7 +98,7 @@ alias tl='tmux ls'
 alias ta='tmux attach -t'
 alias th='teamocil --here'
 
-alias vim="vimx"
+#alias vim="vimx"
 alias gs='g s'
 alias gl='g l'
 
@@ -159,3 +162,14 @@ fi
 
 #autocompletion.. teamocil
 compctl -g '~/.teamocil/*(:t:r)' teamocil
+
+
+
+
+zstyle ':completion:*:*:hello:*' menu yes select
+zstyle ':completion:*:hello:*' force-list always
+#zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+#zstyle ':completion:*:kill:*:processes' command "ps auxw"
+
+
+

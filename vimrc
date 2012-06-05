@@ -132,7 +132,21 @@ nmap <leader>bc :BundleClean<CR>
 "Bundle 'kien/ctrlp.vim'
 
 Bundle 'scrooloose/nerdcommenter' 
+
 Bundle 'tpope/vim-fugitive'       
+"==========================
+nmap <silent> <leader>gd :Gdiff<CR>
+nmap <silent> <leader>gs :Gstatus<CR>
+nmap <silent> <leader>gw :Gwrite<CR>
+nmap <silent> <leader>ga :Gadd<CR>
+nmap <silent> <leader>gci :Gcommit<CR>
+nmap <silent> <leader>gl :Glog<CR>
+
+Bundle 'vim-scripts/YankRing.vim'
+"================================
+let g:yankring_history_dir = expand('$HOME/.vim/tmp')
+nmap <silent> <F6> :YRShow<CR>
+
 Bundle 'tpope/vim-surround'
 Bundle 'Rykka/ColorV'
 Bundle 'gregsexton/MatchTag'
@@ -144,7 +158,7 @@ Bundle 'mileszs/ack.vim'
 
 
 Bundle 'sjbach/lusty'
-"===============================
+"====================
 let g:LustyJugglerShowKeys   = 1
 let g:LustyJugglerAltTabMode = 1
 nmap <silent> <c-b> :LustyJuggler<CR>
