@@ -49,6 +49,8 @@ set cpoptions=ces$
 set hidden
 set confirm
 
+set dictionary=/usr/share/dict/words
+
 
 "text format
 set tabstop=2
