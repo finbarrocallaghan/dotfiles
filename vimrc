@@ -144,10 +144,17 @@ nmap <silent> <leader>ga :Gadd<CR>
 nmap <silent> <leader>gci :Gcommit<CR>
 nmap <silent> <leader>gl :Glog<CR>
 
-Bundle 'vim-scripts/YankRing.vim'
+"Bundle 'vim-scripts/YankRing.vim'
 "================================
-let g:yankring_history_dir = expand('$HOME/.vim/tmp')
-nmap <silent> <F6> :YRShow<CR>
+"let g:yankring_history_dir = expand('$HOME/.vim/tmp')
+"nmap <silent> <F6> :YRShow<CR>
+ 
+"Bundle 'kien/ctrlp.vim' 
+" - seems to crash, no idea why 
+""================================
+"let g:ctrlp_dotfiles = 0
+"let g:ctrlp_clear_cache_on_exit = 0
+
 
 Bundle 'tpope/vim-surround'
 Bundle 'Rykka/ColorV'
