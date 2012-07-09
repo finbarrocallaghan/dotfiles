@@ -20,6 +20,9 @@ set encoding=utf-8
 set synmaxcol=2048
 set showcmd
 set number
+set colorcolumn=81
+set winheight=10
+
 
 "backup 
 set backup
@@ -67,6 +70,7 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set smartcase
 set wildignore+=*.o,*.obj,*.so,*.pyc,.git
 
 "visual
@@ -144,6 +148,10 @@ nmap <silent> <leader>ga :Gadd<CR>
 nmap <silent> <leader>gci :Gcommit<CR>
 nmap <silent> <leader>gl :Glog<CR>
 
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+
+
 "Bundle 'vim-scripts/YankRing.vim'
 "================================
 "let g:yankring_history_dir = expand('$HOME/.vim/tmp')
@@ -156,8 +164,8 @@ nmap <silent> <leader>gl :Glog<CR>
 "let g:ctrlp_clear_cache_on_exit = 0
 
 
-Bundle 'tpope/vim-surround'
 Bundle 'Rykka/ColorV'
+
 Bundle 'gregsexton/MatchTag'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'vim-scripts/git-time-lapse'

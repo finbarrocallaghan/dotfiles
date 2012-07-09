@@ -99,6 +99,7 @@ hi TablineSel   guifg=#20012e guibg=#00a675 gui=bold
 hi TablineFill  guifg=#689C7C
 hi MatchParen   guifg=#38ff56 guibg=#0000ff gui=bold   ctermbg=4
 
+hi ColorColumn  ctermbg=234
 
 "hi IndentGuidesEven gui=NONE guifg=#606080 guibg=#c8c8d8 ctermfg=10 ctermbg=20
 "hi VertSplit    gui=NONE guifg=#606080 guibg=#c8c8d8 ctermfg=233
