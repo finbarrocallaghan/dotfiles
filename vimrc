@@ -53,6 +53,7 @@ set hidden
 set confirm
 
 set dictionary=/usr/share/dict/words
+set undofile
 
 
 "text format
@@ -76,12 +77,13 @@ set wildignore+=*.o,*.obj,*.so,*.pyc,.git
 "visual
 set showmatch
 
+"bindings
+
 noremap + ;
 noremap _ ,
 
 let mapleader=","
 
-"bindings
 map - :nohlsearch<cr>
 map <F1> <Esc>
 imap <F1> <Esc>
@@ -94,7 +96,11 @@ nnoremap ; :
 vmap K k
 nmap K k
 
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
+cnoremap %% <C-R>=expand("%:p:h") . "/"<CR>
+
+
+inoremap  jj <ESC>
+
 "command Bp :w<Bar>bp
 "command Bn :w<Bar>bn
 
@@ -164,7 +170,7 @@ Bundle 'tpope/vim-repeat'
 "let g:ctrlp_clear_cache_on_exit = 0
 
 
-Bundle 'Rykka/ColorV'
+"Bundle 'Rykka/colorv'
 
 Bundle 'gregsexton/MatchTag'
 Bundle 'nanotech/jellybeans.vim'
@@ -247,17 +253,24 @@ Bundle 'vim-scripts/lbdbq'
 "=========================
 "only used within mutt
 
-Bundle 'ivanov/vim-ipython'
+"Bundle 'ivanov/vim-ipython'
 "=========================
 "let g:ipy_perform_mappings=0
 
 Bundle 'jpalardy/vim-slime'
-"=========================
+""=========================
 let g:slime_target = "tmux"
+let g:slime_paste_file = "$HOME/.slime_paste"
 
 Bundle 'jeetsukumaran/vim-buffersaurus'
 "=====================================
 let g:buffersaurus_autodismiss_on_select = 0
+
+Bundle 'tpope/vim-markdown'
+"===============================
+
+Bundle 'suan/vim-instant-markdown'
+"=================================
 
 
 filetype plugin indent on
