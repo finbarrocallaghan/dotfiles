@@ -1,0 +1,27 @@
+[user]
+	name = Finbarr O'Callaghan
+	email = finbarr.ocallaghan@gmail.com
+[merge]
+	tool = vimdiff
+[core]
+	editor = vim
+  excludesfile = ~/.gitignore
+[color]
+	diff = auto
+	branch = auto
+	status = auto
+
+[alias]
+	lg   = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative
+	wipe = "!git reset --hard;git clean -fd"
+	s    = "status -s"
+  a    = "add"
+  co   = "checkout"
+  b    = "branch"
+  c    = "commit"
+  caa  = "commit -a --amend -C HEAD"
+  cm   = "commit -m"
+  cma  = "commit -a -m"
+  ca   = "commit -a"
+  r    = "reset"
+  l = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
