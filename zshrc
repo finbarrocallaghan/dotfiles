@@ -6,7 +6,7 @@ LC_ALL="en_IE.utf8"
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="clean"
 COMPLETION_WAITING_DOTS="true"
-plugins=(git git-flow python vi-mode zsh-syntax-highlighting)
+plugins=(git git-flow python vi-mode zsh-syntax-highlighting mercurial)
 
 fpath=(~/zfunc_test $fpath)
 autoload -Uz hello
