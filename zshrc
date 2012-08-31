@@ -1,5 +1,8 @@
 #.zshrc
 
+LANG="en_IE.utf8"
+LC_ALL="en_IE.utf8"
+
 autoload -U colors && colors
 
 PROMPT='%{$fg[yellow]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
@@ -26,33 +29,34 @@ MAIL=0
 PAGER="less"
 SAVEHIST=50000
 
-setopt PROMPT_SUBST
-setopt APPENDHISTORY
-setopt AUTOCD
-setopt AUTOPUSHD
-setopt BANGHIST
-setopt EXTENDEDGLOB
-setopt EXTENDED_HISTORY
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt HIST_SAVE_NO_DUPS
-setopt INC_APPENDHISTORY
-setopt INTERACTIVECOMMENTS
-setopt NOCLOBBER
-setopt NOHUP
-setopt NOMATCH
-setopt NOTIFY
-setopt PUSHDMINUS
-setopt PUSHDSILENT
-setopt PUSHDIGNOREDUPS
-setopt PUSHDTOHOME
-setopt SHARE_HISTORY
-setopt NOCDABLEVARS
-unsetopt BEEP
+setopt prompt_subst
+setopt appendhistory
+setopt autocd
+setopt autopushd
+setopt banghist
+setopt extendedglob
+setopt extended_history
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt inc_appendhistory
+setopt interactivecomments
+setopt noclobber
+setopt nohup
+setopt nomatch
+setopt notify
+setopt pushdminus
+setopt pushdsilent
+setopt pushdignoredups
+setopt pushdtohome
+setopt share_history
+setopt nocdablevars
+unsetopt beep
 
 
+zmodload -i zsh/complist
 
 # tab completion for PID
 zstyle ':completion:*:*:kill:*' menu yes select
@@ -61,11 +65,12 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*:processes' command "ps auxw"
 
 
+
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle :compinstall filename '~/.zshrc'
+zstyle ':completion:*' list-colors
 
-zmodload -i zsh/complist
 
 autoload -U zmv
 autoload -U zed
@@ -132,7 +137,7 @@ function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return                            
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }                                                                                
-                                                                                 
+
 # Checks if working tree is dirty                                                
 parse_git_dirty() {                                                              
   local SUBMODULE_SYNTAX=''                                                      
@@ -145,3 +150,35 @@ parse_git_dirty() {
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"                                           
   fi                                                                             
 }                                                                                
+
+function title {                                                                 
+  if [[ "$DISABLE_AUTO_TITLE" == "true" ]] || [[ "$EMACS" == *term* ]]; then     
+    return                                                                       
+  fi                                                                             
+  if [[ "$TERM" == screen* ]]; then                                              
+    print -Pn "\ek$1:q\e\\" #set screen hardstatus, usually truncated at 20 chars
+  elif [[ "$TERM" == xterm* ]] || [[ $TERM == rxvt* ]] || [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+    print -Pn "\e]2;$2:q\a" #set window name                                     
+    print -Pn "\e]1;$1:q\a" #set icon (=tab) name (will override window name on broken terminal)
+  fi                                                                             
+}                                                                                
+
+ZSH_THEME_TERM_TAB_TITLE_IDLE="%10<..<%~%<<" #15 char left truncated PWD         
+ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %~"                                            
+
+#Appears when you have the prompt                                                
+function omz_termsupport_precmd {                                                
+  title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE                
+}                                                                                
+
+#Appears at the beginning of (and during) of command execution                   
+function omz_termsupport_preexec {                                               
+  emulate -L zsh                                                                 
+  setopt extended_glob                                                           
+  local CMD=${1[(wr)^(*=*|sudo|ssh|-*)]} #cmd name only, or if this is sudo or ssh, the next cmd
+  title "$CMD" "%100>...>$2%<<"                                                  
+}                                                                                
+
+autoload -U add-zsh-hook                                                         
+add-zsh-hook precmd  omz_termsupport_precmd                                      
+add-zsh-hook preexec omz_termsupport_preexec                                     

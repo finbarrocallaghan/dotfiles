@@ -23,7 +23,6 @@ set number
 set colorcolumn=81
 set winheight=10
 
-
 "backup 
 set backup
 set backupdir=~/.vim/backup
