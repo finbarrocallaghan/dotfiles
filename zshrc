@@ -9,7 +9,6 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git git-flow python vi-mode zsh-syntax-highlighting mercurial)
 
 fpath=(~/zfunc_test $fpath)
-autoload -Uz hello
 
 source $ZSH/oh-my-zsh.sh
 
@@ -170,6 +169,3 @@ zstyle ':completion:*:*:hello:*' menu yes select
 zstyle ':completion:*:hello:*' force-list always
 #zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 #zstyle ':completion:*:kill:*:processes' command "ps auxw"
-
-
-
