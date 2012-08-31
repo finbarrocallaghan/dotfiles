@@ -173,18 +173,18 @@ Bundle 'tpope/vim-repeat'
 "Bundle 'Rykka/colorv'
 
 Bundle 'gregsexton/MatchTag'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'vim-scripts/git-time-lapse'
-Bundle 'vim-scripts/DrawIt'
+"Bundle 'nanotech/jellybeans.vim'
+"Bundle 'vim-scripts/git-time-lapse'
+"Bundle 'vim-scripts/DrawIt'
 Bundle 'vim-scripts/matchit.zip' 
-Bundle 'mileszs/ack.vim' 
+"Bundle 'mileszs/ack.vim' 
 
 
-Bundle 'sjbach/lusty'
-"====================
-let g:LustyJugglerShowKeys   = 1
-let g:LustyJugglerAltTabMode = 1
-nmap <silent> <c-b> :LustyJuggler<CR>
+"Bundle 'sjbach/lusty'
+""====================
+"let g:LustyJugglerShowKeys   = 1
+"let g:LustyJugglerAltTabMode = 1
+"nmap <silent> <c-b> :LustyJuggler<CR>
 
 
 Bundle 'Lokaltog/vim-powerline'
@@ -269,7 +269,7 @@ let g:buffersaurus_autodismiss_on_select = 0
 Bundle 'tpope/vim-markdown'
 "===============================
 
-Bundle 'suan/vim-instant-markdown'
+"Bundle 'suan/vim-instant-markdown'
 "=================================
 
 
