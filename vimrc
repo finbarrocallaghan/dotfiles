@@ -113,17 +113,9 @@ nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>nu :set nu!<CR> 
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
 
-"gui
-set guicursor=n-v-c:block-Cursor-blinkon0
-set guicursor+=ve:ver35-Cursor
-set guicursor+=o:hor50-Cursor
-set guicursor+=i-ci:ver25-Cursor
-set guicursor+=r-cr:hor20-Cursor
-set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-set guioptions=ac
-set diffopt+=iwhite
 
- 
+
+
 " " {{{ bundles/plugins etc..
  
 filetype off
@@ -136,6 +128,35 @@ Bundle 'gmarik/vundle'
 nmap <leader>bi :BundleInstall<CR>
 nmap <leader>bu :BundleInstall!<CR>
 nmap <leader>bc :BundleClean<CR>
+ 
+" don't want powerline running in the qvim gui
+" nice markdown editing env
+if has("gui_qt")
+    set guicursor=n-v-c:block-Cursor-blinkon0
+    set guicursor+=ve:ver35-Cursor
+    set guicursor+=o:hor50-Cursor
+    set guicursor+=i-ci:ver26-Cursor
+    set guicursor+=r-cr:hor20-Cursor
+    set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+    set guioptions=ac
+    set diffopt+=iwhite
+    au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} call DistractionFreeWriting()
+    function! DistractionFreeWriting()
+        colorscheme iawriter
+        set colorcolumn=0
+        set background=light
+        "set fuoptions=background:#00f5f6f6 
+        set guioptions-=r
+        set laststatus=0
+        set noruler
+        set lines=40 
+        set columns=80
+    endfunction 
+else
+    Bundle 'Lokaltog/vim-powerline'
+    "==============================
+    let g:Powerline_symbols = 'compatible'
+endif
 
 
 "Bundle 'Shougo/neocomplcache'
@@ -186,10 +207,6 @@ let g:LustyJugglerShowKeys   = 1
 let g:LustyJugglerAltTabMode = 1
 nmap <silent> <c-b> :LustyJuggler<CR>
 
-
-Bundle 'Lokaltog/vim-powerline'
-"==============================
-let g:Powerline_symbols = 'compatible'
 
 
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -269,8 +286,11 @@ let g:buffersaurus_autodismiss_on_select = 0
 Bundle 'tpope/vim-markdown'
 "===============================
 
-Bundle 'suan/vim-instant-markdown'
+"Bundle 'suan/vim-instant-markdown'
 "=================================
+"
+Bundle "mikewest/vimroom"
+"========================
 
 
 filetype plugin indent on

@@ -65,6 +65,7 @@ zmodload -i zsh/complist
 
 autoload -U zmv
 autoload -U zed
+autoload -U zargs
 
 zle -N edit-command-line
 
