@@ -1,4 +1,3 @@
 dotfiles
 ========
-
-will add proper instructions here :)
+proper instructions
