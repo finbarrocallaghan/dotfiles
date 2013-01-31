@@ -13,7 +13,7 @@ if $TERM=='screen-256color'
 endif
 
 "ui
-set shell=/bin/zsh
+set shell=/usr/bin/zsh
 set laststatus=2
 set fillchars=""
 set encoding=utf-8
