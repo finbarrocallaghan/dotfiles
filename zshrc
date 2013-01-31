@@ -3,6 +3,8 @@
 LANG="en_IE.utf8"
 LC_ALL="en_IE.utf8"
 
+TERM=xterm-256color
+
 autoload -U colors && colors
 
 PROMPT='%{$fg[yellow]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
@@ -101,20 +103,29 @@ alias th='teamocil --here'
 
 
 
-bindkey '\ee' edit-command-line
-bindkey '^F' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
-bindkey -M viins '^O' copy-prev-shell-word
-bindkey '^P' push-line
+
+#bindkey '^F' history-incremental-search-backward
+#bindkey '^S' history-incremental-search-forward
+ 
+
+#bindkey '^[[1;5A' history-search-backward
+#bindkey '^[[1;5B' history-search-forward
 
 
 #-------
 #vi mode
 #-------
 bindkey -v                      
+
 zle -N edit-command-line
+
+bindkey '\ee' edit-command-line
+bindkey -M viins '^O' copy-prev-shell-word
+bindkey '^P' push-line
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+bindkey '^F' history-incremental-search-backward
+bindkey '^G' history-incremental-search-forward
 
 #---
 #git
@@ -132,7 +143,7 @@ compdef _git gst=git-status
 alias gco='git checkout'
 compdef _git gco=git-checkout
 
-
+#robbed from oh-my-zsh
 function git_prompt_info() {                                                     
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return                            
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
@@ -182,3 +193,5 @@ function omz_termsupport_preexec {
 autoload -U add-zsh-hook                                                         
 add-zsh-hook precmd  omz_termsupport_precmd                                      
 add-zsh-hook preexec omz_termsupport_preexec                                     
+
+source ~/.zshrc.local
