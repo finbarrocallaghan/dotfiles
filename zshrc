@@ -9,7 +9,7 @@ TERM=xterm-256color
 
 autoload -U colors && colors
 
-PROMPT='%{$fg[green]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+PROMPT='%{$fg[yellow]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
 RPROMPT='[%*]'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}%{$fg_no_bold[blue]%}%B"
@@ -134,16 +134,16 @@ bindkey '^G' history-incremental-search-forward
 #---
 
 alias g='git'
-#compdef _git g=git
+compdef _git g=git
 alias gs='g s'
 alias gl='g l'
 
 alias gca='git commit -v -a'
-#compdef _git gca=git-commit
+compdef _git gca=git-commit
 alias gst='git status'
-#compdef _git gst=git-status
+compdef _git gst=git-status
 alias gco='git checkout'
-#compdef _git gco=git-checkout
+compdef _git gco=git-checkout
 
 #robbed from oh-my-zsh
 function git_prompt_info() {                                                     
