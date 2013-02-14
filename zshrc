@@ -8,8 +8,12 @@ LC_ALL="en_IE.utf8"
 
 TERM=xterm-256color
 
+if [ -d ~/.zsh/completions ]; then
+fpath=($fpath ~/.zsh/completions)
+fi
 
-
+autoload -U colors; colors
+autoload -U compinit; compinit
 
 PROMPT='%{$fg[$pri_color]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
 RPROMPT='${return_code}%{$fg[$pri_color]%}[%{$fg[white]%}%*%{$fg[$pri_color]%}]%{$reset_color%}$(todo_count)'
