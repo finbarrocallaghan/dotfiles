@@ -1,16 +1,28 @@
 #.zshrc
-source ~/.zshrc.local
+
 LANG="en_IE.utf8"
 LC_ALL="en_IE.utf8"
 
-ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="clean"
-COMPLETION_WAITING_DOTS="true"
-plugins=(git git-flow python vi-mode zsh-syntax-highlighting mercurial)
+TERM=xterm-256color
 
-fpath=(~/zfunc_test $fpath)
+if [ -d  ~/.zsh/completions ]; then
+  fpath=($fpath ~/.zsh/completions)
+fi
 
-source $ZSH/oh-my-zsh.sh
+autoload -U colors; colors
+autoload -U compinit; compinit
+
+PROMPT='%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+RPROMPT='${return_code}%{$fg[blue]%}[%{$fg[white]%}%*%{$fg[blue]%}]%{$reset_color%}$(todo_count)'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}%{$fg_no_bold[yellow]%}%B"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[blue]%}%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}*"
+
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
+export LS_COLORS='no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:'
 
 BROWSER="firefox"
 EDITOR="vim"
@@ -20,75 +32,56 @@ LISTMAX=999
 MAIL=0
 PAGER="less"
 SAVEHIST=50000
-NODE_PATH="/local/focallag/_loc_bin/node-v0.6.15/bin/node"
 
-setopt PROMPT_SUBST
-setopt APPENDHISTORY
-setopt AUTOCD
-setopt AUTOPUSHD
-setopt BANGHIST
-setopt EXTENDEDGLOB
-setopt EXTENDED_HISTORY
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt HIST_SAVE_NO_DUPS
-setopt INC_APPENDHISTORY
-setopt INTERACTIVECOMMENTS
-setopt NOCLOBBER
-setopt NOHUP
-setopt NOMATCH
-setopt NOTIFY
-setopt PUSHDMINUS
-setopt PUSHDSILENT
-setopt PUSHDIGNOREDUPS
-setopt PUSHDTOHOME
-setopt SHARE_HISTORY
-setopt NOCDABLEVARS
-unsetopt BEEP
+setopt prompt_subst
+setopt appendhistory
+setopt autocd
+setopt autopushd
+setopt banghist
+setopt extendedglob
+setopt extended_history
+setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt inc_appendhistory
+setopt interactivecomments
+setopt noclobber
+setopt nohup
+setopt nomatch
+setopt notify
+setopt pushdminus
+setopt pushdsilent
+setopt pushdignoredups
+setopt pushdtohome
+setopt share_history
+setopt nocdablevars
+unsetopt beep
 
+zmodload -i zsh/complist
 
-
-# tab completion for PID
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*:processes' command "ps auxw"
 
-
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle :compinstall filename '~/.zshrc'
+#zstyle ':completion:*' list-colors ''
 
-zmodload -i zsh/complist
+zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
+
 
 autoload -U zmv
 autoload -U zed
 autoload -U zargs
 
-zle -N edit-command-line
 
-
-alias less='less -RXF'
-alias ls='ls --color=auto -F'
-alias lsdirs='ls -ld *(-/DN)'
-alias lsd='ls -d *(-/DN)'
-alias lsa='ls -ld .*'
-alias f='find |grep'
-alias c="clear"
-alias dir='ls -1'
-alias gvim='gvim -geom 82x35'
-
-
-alias ..='cd ..'
-alias -g G='| grep -'
-alias -g GV='| grep -v -'
-alias -g L='| less'
-
-alias g='git'
-#alias s='screen'
-
+#-------
+#tmux
+#-------
 alias tmux='tmux -u2'
 alias t='tmux -u2'
 alias ts='tmux new -s'
@@ -98,75 +91,143 @@ alias tl='tmux ls'
 alias ta='tmux attach -t'
 alias th='teamocil --here'
 
-#alias vim="vimx"
+
+#-------
+#general
+#-------
+
+alias less='less -RXF'
+alias ls='ls --color=auto -F'
+alias lsdirs='ls -ld *(-/DN)'
+alias lsd='ls -d *(-/DN)'
+alias lsa='ls -ld .*'
+alias f='find |grep'
+alias c="clear"
+alias dir='ls -1'
+
+alias ..='cd ..'
+alias -- -='cd -'
+alias -g G='| grep -'
+alias -g GV='| grep -v -'
+alias -g L='| less'
+
+alias to='todo.sh'
+alias gvim='gvim -geom 82x35'
+
+#-------
+#vi mode
+#-------
+bindkey -v                      
+
+zle -N edit-command-line
+
+bindkey '\ee' edit-command-line
+bindkey -M viins '^O' copy-prev-shell-word
+bindkey '^P' push-line
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+bindkey '^F' history-incremental-search-backward
+bindkey '^G' history-incremental-search-forward
+
+#---
+#git
+#---
+
+alias g='git'
+#compdef _git g=git
 alias gs='g s'
 alias gl='g l'
 
-vv() { screen -X chdir `pwd`; screen -X screen;}
-alias vvv="vv && vv && vv;"
+alias gs='g s'
+alias gl='g l'
+alias gds='g ds'
+alias ga='g a'
 
-alias v--='amixer set Master 6553.6-'
-alias v-='amixer set Master 3276.8-'
-alias v++='amixer set Master 6553.6+'
-alias v+='amixer set Master 3276.8+'
-alias knoise='killall noise'
+alias gca='git commit -v -a'
+#compdef _git gca=git-commit
+alias gst='git status'
+#compdef _git gst=git-status
+alias gco='git checkout'
+#compdef _git gco=git-checkout
 
+#robbed from oh-my-zsh
+function git_prompt_info() {                                                     
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return                            
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}                                                                                
 
+# Checks if working tree is dirty                                                
+parse_git_dirty() {                                                              
+  local SUBMODULE_SYNTAX=''                                                      
+  if [[ $POST_1_7_2_GIT -gt 0 ]]; then                                           
+        SUBMODULE_SYNTAX="--ignore-submodules=dirty"                             
+  fi                                                                             
+  if [[ -n $(git status -s ${SUBMODULE_SYNTAX}  2> /dev/null) ]]; then           
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"                                           
+  else                                                                           
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"                                           
+  fi                                                                             
+}                                                                                
 
+function title {                                                                 
+  if [[ "$DISABLE_AUTO_TITLE" == "true" ]] || [[ "$EMACS" == *term* ]]; then     
+    return                                                                       
+  fi                                                                             
+  if [[ "$TERM" == screen* ]]; then                                              
+    print -Pn "\ek$1:q\e\\" #set screen hardstatus, usually truncated at 20 chars
+  elif [[ "$TERM" == xterm* ]] || [[ $TERM == rxvt* ]] || [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+    print -Pn "\e]2;$2:q\a" #set window name                                     
+    print -Pn "\e]1;$1:q\a" #set icon (=tab) name (will override window name on broken terminal)
+  fi                                                                             
+}                                                                                
+##
+#
+ZSH_THEME_TERM_TAB_TITLE_IDLE="%10<..<%~%<<" #15 char left truncated PWD         
+ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %~"                                            
+#Appears when you have the prompt                                                
+function omz_termsupport_precmd {                                                
+  title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE                
+}                                                                                
 
-alias -s html=$BROWSER
-alias -s org=$BROWSER
-alias -s php=$BROWSER
-alias -s com=$BROWSER
-alias -s net=$BROWSER
-alias -s png=eog
-alias -s jpg=eog
-alias -s gif=eog
-alias -s sxw=soffice
-alias -s doc=ooffice
-alias -s gz=tar -xzvf
-alias -s bz2=tar -xjvf
+#Appears at the beginning of (and during) of command execution                   
+function omz_termsupport_preexec {                                               
+  emulate -L zsh                                                                 
+  setopt extended_glob                                                           
+  local CMD=${1[(wr)^(*=*|sudo|ssh|-*)]} #cmd name only, or if this is sudo or ssh, the next cmd
+  title "$CMD" "%100>...>$2%<<"                                                  
+}                                                                                
 
+autoload -U add-zsh-hook                                                         
+add-zsh-hook precmd  omz_termsupport_precmd                                      
+add-zsh-hook preexec omz_termsupport_preexec                                     
+##
 
-alias -s java=$EDITOR
-alias -s txt=$EDITOR
-alias -s dat=$EDITOR
-alias -s cpp=$EDITOR
-alias -s h=$EDITOR
-#alias -s py=$EDITOR
-alias -s PKGBUILD=$EDITOR
+return_code="%(?..%{$fg[blue]%}[%{$fg[red]%}%?%{$fg[blue]%}]%{$reset_color%})"
 
+todo_count(){
+  if $(which todo.sh &> /dev/null)
+    then
+      num=$(echo $(todo.sh -p ls | grep "^[0-9]" | wc -l))
+      let todos=num
+      if [ $todos != 0 ]
+        then
+          echo "%{$fg[blue]%}[-%{$fg[red]%}$todos%{$fg[blue]%}-]%{$reset_color%}"
+      else
+        echo ""
+          fi
+  else
+    echo ""
+      fi
+}
 
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then 
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
-bindkey '\ee' edit-command-line
-bindkey '^F' history-incremental-search-backward
-bindkey '^S' history-incremental-search-forward
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
-bindkey -M viins '^O' copy-prev-shell-word
-bindkey '^P' push-line
-
-
-
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi
 
 if [ -f  ~/.zsh/zsh_functions ]; then
   source ~/.zsh/zsh_functions
-else
-  print "zsh_functions not loaded"
 fi
-
-
-# makes notmuch search work in mutt 
-# no longer needed since I got perlbrew working :)
-#eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)
-
-#autocompletion.. teamocil
-compctl -g '~/.teamocil/*(:t:r)' teamocil
-
-
-
-
-zstyle ':completion:*:*:hello:*' menu yes select
-zstyle ':completion:*:hello:*' force-list always
-#zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-#zstyle ':completion:*:kill:*:processes' command "ps auxw"

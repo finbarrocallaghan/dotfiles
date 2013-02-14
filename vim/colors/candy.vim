@@ -82,8 +82,12 @@ hi htmlUnderlineItalic      gui=UNDERLINE,ITALIC
 "ctermfg=10 gui=NONE 
 "ctermfg=10 gui=NONE 
 "ctermfg=10 gui=NONE 
+
+hi clear CursorLine
+hi CursorLine ctermbg=234
   
-hi SpellBad    ctermbg=9 ctermfg=20
+hi SpellBad    ctermbg=7 ctermfg=1
+
 "hi SpellCap    ctermbg=19  ctermfg=254
 "hi SpellRare   ctermbg=19  ctermfg=254
 "hi SpellLocal  ctermbg=19  ctermfg=254
@@ -101,6 +105,4 @@ hi MatchParen   guifg=#38ff56 guibg=#0000ff gui=bold   ctermbg=4
 
 hi ColorColumn  ctermbg=234
 
-"hi IndentGuidesEven gui=NONE guifg=#606080 guibg=#c8c8d8 ctermfg=10 ctermbg=20
-"hi VertSplit    gui=NONE guifg=#606080 guibg=#c8c8d8 ctermfg=233
 
