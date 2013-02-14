@@ -1,30 +1,34 @@
 #.zshrc
 
+pri_color='yellow'
+sec_color='blue'
 
-source ~/.zshrc.local
 LANG="en_IE.utf8"
 LC_ALL="en_IE.utf8"
 
 TERM=xterm-256color
 
-autoload -U colors && colors
 
-PROMPT='%{$fg[yellow]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
-RPROMPT='[%*]'
+
+
+PROMPT='%{$fg[$pri_color]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+RPROMPT='${return_code}%{$fg[$pri_color]%}[%{$fg[white]%}%*%{$fg[$pri_color]%}]%{$reset_color%}$(todo_count)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}%{$fg_no_bold[blue]%}%B"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[blue]%}%{$reset_color%} "
 
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[$pri_color]%}%{$fg_no_bold[$sec_color]%}%B"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[$pri_color]%}%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}*"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}*"
 
-# LS colors, made with http://geoff.greer.fm/lscolors/
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 export LS_COLORS='no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=41;33;01:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.lzma=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.wmv=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:'
 
-
-#BROWSER="firefox"
+BROWSER="firefox"
 EDITOR="vim"
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
@@ -59,25 +63,39 @@ setopt share_history
 setopt nocdablevars
 unsetopt beep
 
-
 zmodload -i zsh/complist
 
-# tab completion for PID
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*:processes' command "ps auxw"
 
-
-
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle :compinstall filename '~/.zshrc'
-zstyle ':completion:*' list-colors
-
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 autoload -U zmv
 autoload -U zed
+autoload -U zargs
+
+
+#-------
+#tmux
+#-------
+alias tmux='tmux -u2'
+alias t='tmux -u2'
+alias ts='tmux new -s'
+
+alias tsh='tmux new -s $(basename $PWD)'
+alias tl='tmux ls'
+alias ta='tmux attach -t'
+alias th='teamocil --here'
+
+
+#-------
+#general
+#-------
 
 alias less='less -RXF'
 alias ls='ls --color=auto -F'
@@ -89,30 +107,13 @@ alias c="clear"
 alias dir='ls -1'
 
 alias ..='cd ..'
+alias -- -='cd -'
 alias -g G='| grep -'
 alias -g GV='| grep -v -'
 alias -g L='| less'
 
-
-alias tmux='tmux -u2'
-alias t='tmux -u2'
-alias ts='tmux new -s'
-
-alias tsh='tmux new -s $(basename $PWD)'
-alias tl='tmux ls'
-alias ta='tmux attach -t'
-alias th='teamocil --here'
-
-
-
-
-#bindkey '^F' history-incremental-search-backward
-#bindkey '^S' history-incremental-search-forward
- 
-
-#bindkey '^[[1;5A' history-search-backward
-#bindkey '^[[1;5B' history-search-forward
-
+alias to='todo.sh'
+alias gvim='gvim -geom 82x35'
 
 #-------
 #vi mode
@@ -134,16 +135,21 @@ bindkey '^G' history-incremental-search-forward
 #---
 
 alias g='git'
-compdef _git g=git
+#compdef _git g=git
 alias gs='g s'
 alias gl='g l'
 
+alias gs='g s'
+alias gl='g l'
+alias gds='g ds'
+alias ga='g a'
+
 alias gca='git commit -v -a'
-compdef _git gca=git-commit
+#compdef _git gca=git-commit
 alias gst='git status'
-compdef _git gst=git-status
+#compdef _git gst=git-status
 alias gco='git checkout'
-compdef _git gco=git-checkout
+#compdef _git gco=git-checkout
 
 #robbed from oh-my-zsh
 function git_prompt_info() {                                                     
@@ -175,10 +181,10 @@ function title {
     print -Pn "\e]1;$1:q\a" #set icon (=tab) name (will override window name on broken terminal)
   fi                                                                             
 }                                                                                
-
+##
+#
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%10<..<%~%<<" #15 char left truncated PWD         
 ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %~"                                            
-
 #Appears when you have the prompt                                                
 function omz_termsupport_precmd {                                                
   title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE                
@@ -195,5 +201,34 @@ function omz_termsupport_preexec {
 autoload -U add-zsh-hook                                                         
 add-zsh-hook precmd  omz_termsupport_precmd                                      
 add-zsh-hook preexec omz_termsupport_preexec                                     
+##
 
-source ~/.zshrc.local
+return_code="%(?..%{$fg[$pri_color]%}[%{$fg[red]%}%?%{$fg[$pri_color]%}]%{$reset_color%})"
+
+todo_count(){
+  if $(which todo.sh &> /dev/null)
+    then
+      num=$(echo $(todo.sh -p ls | grep "^[0-9]" | wc -l))
+      let todos=num
+      if [ $todos != 0 ]
+        then
+          echo "%{$fg[$pri_color]%}[-%{$fg[red]%}$todos%{$fg[$pri_color]%}-]%{$reset_color%}"
+      else
+        echo ""
+          fi
+  else
+    echo ""
+      fi
+}
+
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then 
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi
+
+if [ -f  ~/.zsh/zsh_functions ]; then
+  source ~/.zsh/zsh_functions
+fi

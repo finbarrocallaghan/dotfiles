@@ -24,4 +24,5 @@
   cma  = "commit -a -m"
   ca   = "commit -a"
   r    = "reset"
+  ds   = "diff --stat"
   l = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
