@@ -1,5 +1,8 @@
 #.zshrc
 
+pri_color='blue'
+sec_color='yellow'
+
 LANG="en_IE.utf8"
 LC_ALL="en_IE.utf8"
 
@@ -12,11 +15,11 @@ fi
 autoload -U colors; colors
 autoload -U compinit; compinit
 
-PROMPT='%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
-RPROMPT='${return_code}%{$fg[blue]%}[%{$fg[white]%}%*%{$fg[blue]%}]%{$reset_color%}$(todo_count)'
+PROMPT='%{$fg[$pri_color]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
+RPROMPT='${return_code}%{$fg[$pri_color]%}[%{$fg[white]%}%*%{$fg[$pri_color]%}]%{$reset_color%}$(todo_count)'
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}%{$fg_no_bold[yellow]%}%B"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[blue]%}%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[$pri_color]%}%{$fg_no_bold[$sec_color]%}%B"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[$pri_color]%}%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}*"
 
@@ -69,10 +72,7 @@ zstyle ':completion:*:kill:*:processes' command "ps auxw"
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle :compinstall filename '~/.zshrc'
-#zstyle ':completion:*' list-colors ''
-
-zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
-
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 autoload -U zmv
 autoload -U zed
@@ -202,7 +202,7 @@ add-zsh-hook precmd  omz_termsupport_precmd
 add-zsh-hook preexec omz_termsupport_preexec                                     
 ##
 
-return_code="%(?..%{$fg[blue]%}[%{$fg[red]%}%?%{$fg[blue]%}]%{$reset_color%})"
+return_code="%(?..%{$fg[$pri_color]%}[%{$fg[red]%}%?%{$fg[$pri_color]%}]%{$reset_color%})"
 
 todo_count(){
   if $(which todo.sh &> /dev/null)
@@ -211,7 +211,7 @@ todo_count(){
       let todos=num
       if [ $todos != 0 ]
         then
-          echo "%{$fg[blue]%}[-%{$fg[red]%}$todos%{$fg[blue]%}-]%{$reset_color%}"
+          echo "%{$fg[$pri_color]%}[-%{$fg[red]%}$todos%{$fg[$pri_color]%}-]%{$reset_color%}"
       else
         echo ""
           fi
