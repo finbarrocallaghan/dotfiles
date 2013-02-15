@@ -25,3 +25,7 @@ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 #zsh
 echo "ln -s ~/.dotfiles/zshrc ~/.zshrc"
 ln -s ~/.dotfiles/zshrc ~/.zshrc
+
+#inputrc
+echo "ln -s ~/.dotfiles/inputrc ~/.inputrc"
+ln -s ~/.dotfiles/inputrc ~/.inputrc
