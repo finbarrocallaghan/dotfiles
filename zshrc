@@ -140,6 +140,7 @@ alias gl='g l'
 
 alias gs='g s'
 alias gl='g l'
+alias gls='g ls'
 alias gds='g ds'
 alias ga='g a'
 
