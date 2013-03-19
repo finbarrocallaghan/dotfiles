@@ -12,7 +12,9 @@
 	status = auto
 
 [alias]
-	lg   = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative
+	lg   = "log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr %an)%Creset' --abbrev-commit --date=relative"
+  ls   = "log --stat"
+  l    = "log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 	wipe = "!git reset --hard;git clean -fd"
 	s    = "status -s"
   a    = "add"
@@ -25,4 +27,3 @@
   ca   = "commit -a"
   r    = "reset"
   ds   = "diff --stat"
-  l = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
