@@ -1,27 +1,19 @@
 #.zshrc
 
-pri_color='blue'
-sec_color='yellow'
+pri_color='yellow'
+sec_color='blue'
 
 LANG="en_IE.utf8"
 LC_ALL="en_IE.utf8"
 
 TERM=xterm-256color
 
-if [ -d  ~/.zsh/completions ]; then
-  fpath=($fpath ~/.zsh/completions)
+if [ -d ~/.zsh/completions ]; then
+fpath=($fpath ~/.zsh/completions)
 fi
 
 autoload -U colors; colors
 autoload -U compinit; compinit
-
-PROMPT='%{$fg[$pri_color]%}%B%c/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
-RPROMPT='${return_code}%{$fg[$pri_color]%}[%{$fg[white]%}%*%{$fg[$pri_color]%}]%{$reset_color%}$(todo_count)'
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[$pri_color]%}%{$fg_no_bold[$sec_color]%}%B"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[$pri_color]%}%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}*"
 
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
@@ -79,6 +71,24 @@ autoload -U zmv
 autoload -U zed
 autoload -U zargs
 autoload -U edit-command-line
+
+#-------
+#prompt
+#-------
+autoload -U vcs_info
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '^'
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' enable git hg
+zstyle ':vcs_info:*' actionformats  '%b%c%u|%a '
+zstyle ':vcs_info:*' formats        "%{$fg[$sec_color]%}%b%c%F{red}%u%f "
+precmd() { vcs_info }
+
+#B (%b) Start (stop) boldface mode.
+#%F (%f) Start (stop) using a different foreground colour
+PROMPT='%F{$pri_color}%B%c/%f ${vcs_info_msg_0_}%(!.#.$)%b '
+RPROMPT='${return_code}%B%F{$pri_color}[%f%b%*%B%F{$pri_color}]%f$(todo_count)'
 
 
 #-------
@@ -151,59 +161,8 @@ compdef _git gst=git-status
 alias gco='git checkout'
 compdef _git gco=git-checkout
 
-#robbed from oh-my-zsh
-function git_prompt_info() {                                                     
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return                            
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}                                                                                
 
-# Checks if working tree is dirty                                                
-parse_git_dirty() {                                                              
-  local SUBMODULE_SYNTAX=''                                                      
-  if [[ $POST_1_7_2_GIT -gt 0 ]]; then                                           
-        SUBMODULE_SYNTAX="--ignore-submodules=dirty"                             
-  fi                                                                             
-  if [[ -n $(git status -s ${SUBMODULE_SYNTAX}  2> /dev/null) ]]; then           
-    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"                                           
-  else                                                                           
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"                                           
-  fi                                                                             
-}                                                                                
-
-function title {                                                                 
-  if [[ "$DISABLE_AUTO_TITLE" == "true" ]] || [[ "$EMACS" == *term* ]]; then     
-    return                                                                       
-  fi                                                                             
-  if [[ "$TERM" == screen* ]]; then                                              
-    print -Pn "\ek$1:q\e\\" #set screen hardstatus, usually truncated at 20 chars
-  elif [[ "$TERM" == xterm* ]] || [[ $TERM == rxvt* ]] || [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
-    print -Pn "\e]2;$2:q\a" #set window name                                     
-    print -Pn "\e]1;$1:q\a" #set icon (=tab) name (will override window name on broken terminal)
-  fi                                                                             
-}                                                                                
-##
-#
-ZSH_THEME_TERM_TAB_TITLE_IDLE="%10<..<%~%<<" #15 char left truncated PWD         
-ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %~"                                            
-#Appears when you have the prompt                                                
-function omz_termsupport_precmd {                                                
-  title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE                
-}                                                                                
-
-#Appears at the beginning of (and during) of command execution                   
-function omz_termsupport_preexec {                                               
-  emulate -L zsh                                                                 
-  setopt extended_glob                                                           
-  local CMD=${1[(wr)^(*=*|sudo|ssh|-*)]} #cmd name only, or if this is sudo or ssh, the next cmd
-  title "$CMD" "%100>...>$2%<<"                                                  
-}                                                                                
-
-autoload -U add-zsh-hook                                                         
-add-zsh-hook precmd  omz_termsupport_precmd                                      
-add-zsh-hook preexec omz_termsupport_preexec                                     
-##
-
-return_code="%(?..%{$fg[$pri_color]%}[%{$fg[red]%}%?%{$fg[$pri_color]%}]%{$reset_color%})"
+return_code="%(?..%B%F{$pri_color}[%F{red}%?%F{$pri_color}]%f)"
 
 todo_count(){
   if $(which todo.sh &> /dev/null)
@@ -212,7 +171,7 @@ todo_count(){
       let todos=num
       if [ $todos != 0 ]
         then
-          echo "%{$fg[$pri_color]%}[-%{$fg[red]%}$todos%{$fg[$pri_color]%}-]%{$reset_color%}"
+          echo "%F{$pri_color}[-%F{red}$todos%F{$pri_color}-]%f"
       else
         echo ""
           fi
