@@ -60,6 +60,7 @@ setopt pushdignoredups
 setopt pushdtohome
 setopt share_history
 setopt nocdablevars
+setopt braceccl
 unsetopt beep
 
 zmodload -i zsh/complist
@@ -77,6 +78,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 autoload -U zmv
 autoload -U zed
 autoload -U zargs
+autoload -U edit-command-line
 
 
 #-------
@@ -120,8 +122,8 @@ alias gvim='gvim -geom 82x35'
 bindkey -v                      
 
 zle -N edit-command-line
-
 bindkey '\ee' edit-command-line
+
 bindkey -M viins '^O' copy-prev-shell-word
 bindkey '^P' push-line
 bindkey "^[[A" history-beginning-search-backward
@@ -134,9 +136,7 @@ bindkey '^G' history-incremental-search-forward
 #---
 
 alias g='git'
-#compdef _git g=git
-alias gs='g s'
-alias gl='g l'
+compdef _git g=git
 
 alias gs='g s'
 alias gl='g l'
@@ -145,11 +145,11 @@ alias gds='g ds'
 alias ga='g a'
 
 alias gca='git commit -v -a'
-#compdef _git gca=git-commit
+compdef _git gca=git-commit
 alias gst='git status'
-#compdef _git gst=git-status
+compdef _git gst=git-status
 alias gco='git checkout'
-#compdef _git gco=git-checkout
+compdef _git gco=git-checkout
 
 #robbed from oh-my-zsh
 function git_prompt_info() {                                                     

@@ -134,16 +134,8 @@ inoremap  jj <ESC>
 
 
 " Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
-"nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<CR>
-
-
-"command Bp :w<Bar>bp
-"command Bn :w<Bar>bn
+nmap <leader><Space> za
+vmap <leader><Space> za
 
 
 "leader commands
@@ -333,12 +325,21 @@ Bundle "vim-scripts/Rainbow-Parentheses-Improved"
 "}}}
 
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
-"{{{=============================================
+"{{{=============================
 let g:LatexBox_latexmk_options = '-pvc -pdf -synctex=1'
 
 "}}}
 
+Bundle 'Lokaltog/vim-easymotion'
+"{{{============================
+let g:EasyMotion_leader_key =  '<Space>'
+nmap s <Space>w
+nmap S <Space>B
+"}}}
 
+"Bundle 'scrooloose/syntastic'
+"Bundle 'Valloric/YouCompleteMe'
+ 
 Bundle "kchmck/vim-coffee-script"
 Bundle 'vim-scripts/lbdbq'
 Bundle 'tpope/vim-surround'
@@ -354,6 +355,8 @@ Bundle "mikewest/vimroom"
 Bundle "pangloss/vim-javascript"
 Bundle 'scrooloose/nerdcommenter' 
 Bundle 'jnwhiteh/vim-golang'
+Bundle 'vim-scripts/VisIncr'
+
 "Bundle 'Shougo/neocomplcache'
 "Bundle 'Rykka/colorv'
 "Bundle 'suan/vim-instant-markdown'
@@ -361,5 +364,6 @@ Bundle 'jnwhiteh/vim-golang'
 "Bundle 'vim-scripts/desert-warm-256'
 "Bundle 'kien/ctrlp.vim'
 "=================================
+
 filetype plugin indent on
-"" }}} 
+" }}} 
