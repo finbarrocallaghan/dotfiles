@@ -82,8 +82,12 @@ zstyle ':vcs_info:*' stagedstr '^'
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' enable git hg
 zstyle ':vcs_info:*' actionformats  '%b%c%u|%a '
+<<<<<<< HEAD
 #zstyle ':vcs_info:*' formats        "%{$fg[$sec_color]%}%b%c%F{red}%u%f "
 zstyle ':vcs_info:*' formats        "%F{yellow}%b%c%F{red}%u%f "
+=======
+zstyle ':vcs_info:*' formats        "%{$fg[$sec_color]%}%b%F{red}%c%u%f "
+>>>>>>> 1d011f7b4a1b2fb5cbba88c269da18982fd2f8b1
 precmd() { vcs_info }
 
 #B (%b) Start (stop) boldface mode.
