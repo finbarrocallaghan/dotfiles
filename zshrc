@@ -1,7 +1,7 @@
 #.zshrc
 
-pri_color='yellow'
-sec_color='blue'
+pri_color='blue'
+sec_color='yellow'
 
 LANG="en_IE.utf8"
 LC_ALL="en_IE.utf8"
@@ -75,19 +75,21 @@ autoload -U edit-command-line
 #-------
 #prompt
 #-------
-autoload -U vcs_info
+autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr '^'
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' enable git hg
 zstyle ':vcs_info:*' actionformats  '%b%c%u|%a '
-zstyle ':vcs_info:*' formats        "%{$fg[$sec_color]%}%b%c%F{red}%u%f "
+#zstyle ':vcs_info:*' formats        "%{$fg[$sec_color]%}%b%c%F{red}%u%f "
+zstyle ':vcs_info:*' formats        "%F{yellow}%b%c%F{red}%u%f "
 precmd() { vcs_info }
 
 #B (%b) Start (stop) boldface mode.
 #%F (%f) Start (stop) using a different foreground colour
 PROMPT='%F{$pri_color}%B%c/%f ${vcs_info_msg_0_}%(!.#.$)%b '
+#PROMPT='%F{$pri_color}%B%c/%f %(!.#.$)%b '
 RPROMPT='${return_code}%B%F{$pri_color}[%f%b%*%B%F{$pri_color}]%f$(todo_count)'
 
 
