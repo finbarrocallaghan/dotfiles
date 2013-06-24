@@ -132,6 +132,13 @@ cnoremap %% <C-R>=expand("%:p:h") . "/"<CR>
 inoremap  jj <ESC>
 
 
+match ExtraWhitespace /\s\+\%#\@<!$/
+function! TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+nnoremap <leader>dw :call TrimWhiteSpace()<CR>
+
+
 
 " Space to toggle folds.
 nmap <leader><Space> za
@@ -179,12 +186,11 @@ function! s:Pulse() " {{{
 
     execute 'hi ' . old_hi
 endfunction " }}}
-
 command! -nargs=0 Pulse call s:Pulse()
+"}}}
 
 "}}}
-"}}}
- 
+
 ""bundles/plugins etc.. -----------------------------------------------------{{{
 filetype off
 
@@ -314,10 +320,10 @@ autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "}}}
 
 
-Bundle "davidhalter/jedi-vim"
+"Bundle "davidhalter/jedi-vim"
 "{{{=========================
-let g:jedi#popup_on_dot = 0
-let g:jedi#use_tabs_not_buffers = 0 
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#use_tabs_not_buffers = 0 
 "}}}
 
 Bundle "vim-scripts/Rainbow-Parentheses-Improved"
@@ -334,7 +340,7 @@ Bundle 'Lokaltog/vim-easymotion'
 "{{{============================
 let g:EasyMotion_leader_key =  '<Space>'
 nmap s <Space>w
-nmap S <Space>B
+nmap S <Space>b
 "}}}
 
 "Bundle 'scrooloose/syntastic'
@@ -356,7 +362,11 @@ Bundle "pangloss/vim-javascript"
 Bundle 'scrooloose/nerdcommenter' 
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'vim-scripts/VisIncr'
+"Bundle 'triglav/vim-visual-increment'
+Bundle 'tpope/vim-speeddating'
 
+
+Bundle 'FredKSchott/CoVim'
 "Bundle 'Shougo/neocomplcache'
 "Bundle 'Rykka/colorv'
 "Bundle 'suan/vim-instant-markdown'

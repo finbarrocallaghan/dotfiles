@@ -85,7 +85,7 @@ hi htmlUnderlineItalic      gui=UNDERLINE,ITALIC
 
 hi clear CursorLine
 hi CursorLine ctermbg=234
-  
+
 hi SpellBad    ctermbg=7 ctermfg=1
 
 "hi SpellCap    ctermbg=19  ctermfg=254
@@ -104,5 +104,6 @@ hi TablineFill  guifg=#689C7C
 hi MatchParen   guifg=#38ff56 guibg=#0000ff gui=bold   ctermbg=4
 
 hi ColorColumn  ctermbg=234
+hi ExtraWhiteSpace ctermbg=234
 
 
