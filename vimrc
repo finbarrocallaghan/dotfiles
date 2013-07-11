@@ -1,6 +1,6 @@
 "lots of of bits taken from various github rc files and elsewhere
 "basic structure from github.com/gmarik
- 
+
 set nocompatible
 
 "color ----------------------------------------------------------------------{{{
@@ -14,7 +14,7 @@ if $TERM=='screen-256color'
 endif
 
 "}}}
- 
+
 "ui -------------------------------------------------------------------------{{{
  
 set shell=/bin/zsh
@@ -28,7 +28,7 @@ set colorcolumn=81
 set winheight=10
 
 "}}}
- 
+
 "backup ---------------------------------------------------------------------{{{
 
 set backup
@@ -69,7 +69,7 @@ set dictionary=/usr/share/dict/words
 set undofile
 
 "}}}
- 
+
 "folding --------------------------------------------------------------------{{{
  
 set foldlevelstart=0
@@ -78,20 +78,20 @@ set foldmethod=marker
 ":au BufWinEnter * silent loadview
 
 "}}}
- 
+
 "text format ----------------------------------------------------------------{{{
  
 set tabstop=2
 set shiftwidth=2
-set cindent
+"set cindent "responsible for some funny indentation issues!  "http://imgur.com/a/OrwNd
 set autoindent
 set smarttab
 set expandtab
 set backspace=2
-set textwidth=118
+set textwidth=80
 
 "}}}
- 
+
 "searching ------------------------------------------------------------------{{{
  
 set ignorecase
@@ -102,13 +102,13 @@ set smartcase
 set wildignore+=*.o,*.obj,*.so,*.pyc,.git
 
 "}}}
- 
+
 "visual ---------------------------------------------------------------------{{{
  
 set showmatch
 
 "}}}
- 
+
 "bindings -------------------------------------------------------------------{{{
 
 noremap + ;
@@ -153,42 +153,6 @@ nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>nu :set nu!<CR> 
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
 
-" Pulse Line {{{
-
-function! s:Pulse() " {{{
-    let current_window = winnr()
-    windo set nocursorline
-    execute current_window . 'wincmd w'
-    setlocal cursorline
-
-    redir => old_hi
-        silent execute 'hi CursorLine'
-    redir END
-    let old_hi = split(old_hi, '\n')[0]
-    let old_hi = substitute(old_hi, 'xxx', '', '')
-
-    let steps = 9
-    let width = 1
-    let start = width
-    let end = steps * width
-    let color = 233
-
-    for i in range(start, end, width)
-        execute "hi CursorLine ctermbg=" . (color + i)
-        redraw
-        sleep 6m
-    endfor
-    for i in range(end, start, -1 * width)
-        execute "hi CursorLine ctermbg=" . (color + i)
-        redraw
-        sleep 6m
-    endfor
-
-    execute 'hi ' . old_hi
-endfunction " }}}
-command! -nargs=0 Pulse call s:Pulse()
-"}}}
-
 "}}}
 
 ""bundles/plugins etc.. -----------------------------------------------------{{{
@@ -229,10 +193,20 @@ if has("gui_qt")
         set columns=80
     endfunction 
 else
-    Bundle 'Lokaltog/vim-powerline' 
-    "===============================
-    let g:Powerline_symbols = 'compatible'
+    "Bundle 'Lokaltog/powerline'
+    Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+    "==============================================================
+    set noshowmode
+    "let g:airline_powerline_fonts=1
+    "let g:airline_theme='finn'
+    "let g:Powerline_symbols = 'compatible'
 endif
+
+Bundle 'bling/vim-bufferline'
+""============================
+let g:bufferline_echo=0
+set statusline=%{bufferline#generate_string()}
+
 
 Bundle 'tpope/vim-fugitive' 
 "{{{======================
@@ -368,7 +342,8 @@ Bundle 'tpope/vim-speeddating'
 
 Bundle 'FredKSchott/CoVim'
 "Bundle 'Shougo/neocomplcache'
-"Bundle 'Rykka/colorv'
+Bundle 'guns/xterm-color-table.vim'
+"Bundle 'Rykka/colorv.vim'
 "Bundle 'suan/vim-instant-markdown'
 "Bundle 'wincent/Command-T'
 "Bundle 'vim-scripts/desert-warm-256'

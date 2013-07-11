@@ -27,3 +27,4 @@
   ca   = "commit -a"
   r    = "reset"
   ds   = "diff --stat"
+  d    = "diff"

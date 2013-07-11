@@ -43,8 +43,8 @@ hi lCursor      gui=NONE guifg=#ffffff guibg=#8800ff
 hi CursorIM     gui=NONE guifg=#ffffff guibg=#8800ff
 
 " Fold
-hi Folded       gui=NONE guifg=#40f0f0 guibg=#005080
-hi FoldColumn   gui=NONE guifg=#40c0ff guibg=#00305c
+hi Folded       gui=NONE guifg=#40f0f0 guibg=#005080 ctermbg=NONE ctermfg=9
+hi FoldColumn   gui=NONE guifg=#40c0ff guibg=#00305c ctermbg=NONE ctermfg=9
 
 " Other
 hi Directory    gui=NONE guifg=#40f0d0 guibg=NONE
