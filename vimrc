@@ -4,19 +4,19 @@
 set nocompatible
 
 "color ----------------------------------------------------------------------{{{
- 
+
 colorscheme candy
 set background=dark
 set t_Co=256
 if $TERM=='screen-256color'
-  autocmd BufEnter * let &titlestring = "[".expand("%:t") ."]" 
+  autocmd BufEnter * let &titlestring = "[".expand("%:t") ."]"
   exe "set title t_ts=\<ESC>k t_fs=\<ESC>\\"
 endif
 
 "}}}
 
 "ui -------------------------------------------------------------------------{{{
- 
+
 set shell=/bin/zsh
 set laststatus=2
 set fillchars=""
@@ -38,7 +38,7 @@ set directory=~/.vim/tmp
 "}}}
 
 "behaviours -----------------------------------------------------------------{{{
- 
+
 syntax enable
 set mousehide
 set autoread
@@ -71,7 +71,7 @@ set undofile
 "}}}
 
 "folding --------------------------------------------------------------------{{{
- 
+
 set foldlevelstart=0
 set foldmethod=marker
 ":au BufWinLeave * mkview
@@ -80,7 +80,7 @@ set foldmethod=marker
 "}}}
 
 "text format ----------------------------------------------------------------{{{
- 
+
 set tabstop=2
 set shiftwidth=2
 "set cindent "responsible for some funny indentation issues!  "http://imgur.com/a/OrwNd
@@ -93,7 +93,7 @@ set textwidth=80
 "}}}
 
 "searching ------------------------------------------------------------------{{{
- 
+
 set ignorecase
 set smartcase
 set incsearch
@@ -104,7 +104,7 @@ set wildignore+=*.o,*.obj,*.so,*.pyc,.git
 "}}}
 
 "visual ---------------------------------------------------------------------{{{
- 
+
 set showmatch
 
 "}}}
@@ -120,7 +120,7 @@ map - :nohlsearch<cr>
 map <F1> <Esc>
 imap <F1> <Esc>
 
-noremap Y y$  
+noremap Y y$
 
 vnoremap ; :
 nnoremap ; :
@@ -150,7 +150,7 @@ nmap <silent> <leader>s :set spell!<CR>
 nmap <silent> <leader>ev :e ~/.vimrc<CR>
 nmap <silent> <leader>v :so ~/.vimrc<CR>
 nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
-nmap <silent> <leader>nu :set nu!<CR> 
+nmap <silent> <leader>nu :set nu!<CR>
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
 
 "}}}
@@ -168,7 +168,7 @@ nmap <leader>bi :BundleInstall<CR>
 nmap <leader>bu :BundleInstall!<CR>
 nmap <leader>bc :BundleClean<CR>
 "}}}
- 
+
 " don't want powerline running in the qvim gui
 " nice markdown editing env
 if has("gui_qt")
@@ -185,13 +185,13 @@ if has("gui_qt")
         colorscheme iawriter
         set colorcolumn=0
         set background=light
-        "set fuoptions=background:#00f5f6f6 
+        "set fuoptions=background:#00f5f6f6
         set guioptions-=r
         set laststatus=0
         set noruler
-        set lines=40 
+        set lines=40
         set columns=80
-    endfunction 
+    endfunction
 else
     "Bundle 'Lokaltog/powerline'
     Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -208,7 +208,7 @@ let g:bufferline_echo=0
 set statusline=%{bufferline#generate_string()}
 
 
-Bundle 'tpope/vim-fugitive' 
+Bundle 'tpope/vim-fugitive'
 "{{{======================
 nmap <silent> <leader>gd :Gdiff<CR>
 nmap <silent> <leader>gs :Gstatus<CR>
@@ -217,24 +217,24 @@ nmap <silent> <leader>ga :Gadd<CR>
 nmap <silent> <leader>gci :Gcommit<CR>
 nmap <silent> <leader>gl :Glog<CR>
 "}}}
- 
-Bundle 'sjbach/lusty' 
+
+Bundle 'sjbach/lusty'
 "{{{=================
 let g:LustyJugglerShowKeys   = 1
 let g:LustyJugglerAltTabMode = 1
 nmap <silent> <c-b> :LustyJuggler<CR>
 "}}}
- 
+
 Bundle 'nathanaelkane/vim-indent-guides'
 "{{{=================================
 let g:indent_guides_auto_colors=0
-let g:indent_guides_enable_on_vim_startup=1 
+let g:indent_guides_enable_on_vim_startup=1
 hi IndentGuidesEven ctermbg=234
 hi IndentGuidesOdd  ctermbg=233
 "hi IndentGuidesEven ctermbg=233
 "hi IndentGuidesOdd  ctermbg=232
 "}}}
- 
+
 Bundle 'scrooloose/nerdtree'
 "{{{========================
 nmap <silent> <c-n> :NERDTreeToggle<CR>
@@ -247,7 +247,7 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
             \ '\.intermediate\.manifest$', '^mt.dep$' ]
 
 "}}}
- 
+
 Bundle 'finbarrocallaghan/highlights.vim'
 "{{{=====================================
 nmap <silent> <leader>1  :Hi 1<CR>
@@ -260,44 +260,32 @@ nmap <silent> <leader>7  :Hi 7<CR>
 nmap <silent> <leader>8  :Hi 8<CR>
 nmap <silent> <leader>9  :Hi 9<CR>
 "}}}
- 
+
 Bundle 'vim-scripts/Gundo'
 "{{{======================
-noremap <F5> :GundoToggle<CR> 
+noremap <F5> :GundoToggle<CR>
 let g:gundo_right = 1
 let g:gundo_preview_bottom = 1
 let g:gundo_close_on_revert = 1
 "}}}
- 
+
 Bundle 'jpalardy/vim-slime'
 "{{{=======================
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
 "}}}
- 
-Bundle 'jeetsukumaran/vim-buffersaurus'
-"{{{==================================
-let g:buffersaurus_autodismiss_on_select = 0
-"}}}
- 
+
 Bundle "maksimr/vim-jsbeautify"
 Bundle "einars/js-beautify"
 "{{{=======================
 
 "settings in .editorconfig?
- 
- 
+
+
 "map <c-f> :call JsBeautify()<cr>
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-"}}}
-
-
-"Bundle "davidhalter/jedi-vim"
-"{{{=========================
-"let g:jedi#popup_on_dot = 0
-"let g:jedi#use_tabs_not_buffers = 0 
 "}}}
 
 Bundle "vim-scripts/Rainbow-Parentheses-Improved"
@@ -319,7 +307,7 @@ nmap S <Space>b
 
 "Bundle 'scrooloose/syntastic'
 "Bundle 'Valloric/YouCompleteMe'
- 
+
 Bundle "kchmck/vim-coffee-script"
 Bundle 'vim-scripts/lbdbq'
 Bundle 'tpope/vim-surround'
@@ -328,12 +316,12 @@ Bundle 'gregsexton/MatchTag'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'vim-scripts/git-time-lapse'
 Bundle 'vim-scripts/DrawIt'
-Bundle 'vim-scripts/matchit.zip' 
-Bundle 'mileszs/ack.vim' 
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-markdown'
 Bundle "mikewest/vimroom"
 Bundle "pangloss/vim-javascript"
-Bundle 'scrooloose/nerdcommenter' 
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'vim-scripts/VisIncr'
 "Bundle 'triglav/vim-visual-increment'
@@ -341,8 +329,11 @@ Bundle 'tpope/vim-speeddating'
 
 
 Bundle 'FredKSchott/CoVim'
-"Bundle 'Shougo/neocomplcache'
 Bundle 'guns/xterm-color-table.vim'
+
+Bundle 'fholgado/minibufexpl.vim'
+
+
 "Bundle 'Rykka/colorv.vim'
 "Bundle 'suan/vim-instant-markdown'
 "Bundle 'wincent/Command-T'
@@ -351,4 +342,4 @@ Bundle 'guns/xterm-color-table.vim'
 "=================================
 
 filetype plugin indent on
-" }}} 
+" }}}
