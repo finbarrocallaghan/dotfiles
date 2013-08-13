@@ -25,7 +25,7 @@ set synmaxcol=2048
 set showcmd
 set number
 set colorcolumn=81
-set winheight=10
+"set winheight=10
 
 "}}}
 
@@ -202,10 +202,6 @@ else
     "let g:Powerline_symbols = 'compatible'
 endif
 
-Bundle 'bling/vim-bufferline'
-""============================
-let g:bufferline_echo=0
-set statusline=%{bufferline#generate_string()}
 
 
 Bundle 'tpope/vim-fugitive'
@@ -305,6 +301,27 @@ nmap s <Space>w
 nmap S <Space>b
 "}}}
 
+
+"Bundle 'techlivezheng/vim-plugin-minibufexpl'
+""Bundle 'JessicaKMcIntosh/TagmaBufMgr'
+"{{{=============================
+"let g:miniBufExplMinSize = 1
+"let g:miniBufExplMaxHeight = 1
+"let g:miniBufExplMapWindowNavVim = 1
+"map <leader>t :MBEToggle<cr>
+"noremap <C-L> :MBEbn<cr>
+"noremap <C-H> :MBEbp<cr>
+
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1 "}}}
+
+"Bundle 'bling/vim-bufferline'
+""============================
+"let g:bufferline_echo=0
+"set statusline=%{bufferline#generate_string()}
+
+
 "Bundle 'scrooloose/syntastic'
 "Bundle 'Valloric/YouCompleteMe'
 
@@ -331,7 +348,7 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'FredKSchott/CoVim'
 Bundle 'guns/xterm-color-table.vim'
 
-Bundle 'fholgado/minibufexpl.vim'
+
 
 
 "Bundle 'Rykka/colorv.vim'
