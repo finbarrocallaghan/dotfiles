@@ -325,11 +325,11 @@ nmap S <Space>b
 "Bundle 'scrooloose/syntastic'
 "Bundle 'Valloric/YouCompleteMe'
 
-Bundle "kchmck/vim-coffee-script"
+"Bundle "kchmck/vim-coffee-script"
 Bundle 'vim-scripts/lbdbq'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
-Bundle 'gregsexton/MatchTag'
+"Bundle 'gregsexton/MatchTag'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'vim-scripts/git-time-lapse'
 Bundle 'vim-scripts/DrawIt'
@@ -345,7 +345,7 @@ Bundle 'vim-scripts/VisIncr'
 Bundle 'tpope/vim-speeddating'
 
 
-Bundle 'FredKSchott/CoVim'
+"Bundle 'FredKSchott/CoVim'
 Bundle 'guns/xterm-color-table.vim'
 
 
