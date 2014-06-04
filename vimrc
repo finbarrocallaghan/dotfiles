@@ -162,15 +162,15 @@ noremap <leader>c a<C-X><C-S>
 ""bundles/plugins etc.. -----------------------------------------------------{{{
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 "{{{
 "=====================
-nmap <leader>bi :BundleInstall<CR>
-nmap <leader>bu :BundleInstall!<CR>
-nmap <leader>bc :BundleClean<CR>
+nmap <leader>bi :PluginInstall<CR>
+nmap <leader>bu :PluginInstall!<CR>
+nmap <leader>bc :PluginClean<CR>
 "}}}
 
 " don't want powerline running in the qvim gui
@@ -197,8 +197,8 @@ if has("gui_qt")
         set columns=80
     endfunction
 else
-    "Bundle 'Lokaltog/powerline'
-    Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+    "Plugin 'Lokaltog/powerline'
+    Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
     "==============================================================
     set noshowmode
     "let g:airline_powerline_fonts=1
@@ -208,7 +208,7 @@ endif
 
 
 
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 "{{{======================
 nmap <silent> <leader>gd :Gdiff<CR>
 nmap <silent> <leader>gs :Gstatus<CR>
@@ -218,14 +218,14 @@ nmap <silent> <leader>gci :Gcommit<CR>
 nmap <silent> <leader>gl :Glog<CR>
 "}}}
 
-Bundle 'sjbach/lusty'
+Plugin 'sjbach/lusty'
 "{{{=================
 let g:LustyJugglerShowKeys   = 1
 let g:LustyJugglerAltTabMode = 1
 nmap <silent> <c-b> :LustyJuggler<CR>
 "}}}
 
-Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'nathanaelkane/vim-indent-guides'
 "{{{=================================
 let g:indent_guides_auto_colors=0
 let g:indent_guides_enable_on_vim_startup=1
@@ -235,7 +235,7 @@ hi IndentGuidesOdd  ctermbg=233
 "hi IndentGuidesOdd  ctermbg=232
 "}}}
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 "{{{========================
 nmap <silent> <c-n> :NERDTreeToggle<CR>
 let g:NERDTreeMapOpenVSplit = "s"
@@ -248,7 +248,7 @@ let NERDTreeIgnore=[ '\.ncb$', '\.suo$', '\.vcproj\.RIMNET', '\.obj$',
 
 "}}}
 
-Bundle 'finbarrocallaghan/highlights.vim'
+Plugin 'finbarrocallaghan/highlights.vim'
 "{{{=====================================
 nmap <silent> <leader>1  :Hi 1<CR>
 nmap <silent> <leader>2  :Hi 2<CR>
@@ -261,7 +261,7 @@ nmap <silent> <leader>8  :Hi 8<CR>
 nmap <silent> <leader>9  :Hi 9<CR>
 "}}}
 
-Bundle 'vim-scripts/Gundo'
+Plugin 'vim-scripts/Gundo'
 "{{{======================
 noremap <F5> :GundoToggle<CR>
 let g:gundo_right = 1
@@ -269,14 +269,14 @@ let g:gundo_preview_bottom = 1
 let g:gundo_close_on_revert = 1
 "}}}
 
-Bundle 'jpalardy/vim-slime'
+Plugin 'jpalardy/vim-slime'
 "{{{=======================
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
 "}}}
 
-Bundle "maksimr/vim-jsbeautify"
-Bundle "einars/js-beautify"
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'einars/js-beautify'
 "{{{=======================
 
 "settings in .editorconfig?
@@ -288,28 +288,28 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "}}}
 
-Bundle "vim-scripts/Rainbow-Parentheses-Improved"
+Plugin 'vim-scripts/Rainbow-Parentheses-Improved'
 "{{{=============================================
 "}}}
 
-Bundle 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
 "{{{=============================
 "let g:LatexBox_latexmk_options = '-pvc -pdf -synctex=1'
 "}}}
 
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 "{{{============================
 let g:EasyMotion_leader_key =  '<Space>'
 nmap s <Space>w
 nmap S <Space>b
 "}}}
 
-"Bundle 'ivanov/vim-ipython'
-Bundle 'vim-scripts/autoswap.vim'
+"Plugin 'ivanov/vim-ipython'
+Plugin 'vim-scripts/autoswap.vim'
 
 
-"Bundle 'techlivezheng/vim-plugin-minibufexpl'
-""Bundle 'JessicaKMcIntosh/TagmaBufMgr'
+"Plugin 'techlivezheng/vim-plugin-minibufexpl'
+""Plugin 'JessicaKMcIntosh/TagmaBufMgr'
 "{{{=============================
 "let g:miniBufExplMinSize = 1
 "let g:miniBufExplMaxHeight = 1
@@ -322,48 +322,49 @@ Bundle 'vim-scripts/autoswap.vim'
 "let g:miniBufExplMapCTabSwitchBufs = 1
 "let g:miniBufExplModSelTarget = 1 "}}}
 
-"Bundle 'bling/vim-bufferline'
+"Plugin 'bling/vim-bufferline'
 ""============================
 "let g:bufferline_echo=0
 "set statusline=%{bufferline#generate_string()}
 
 
-"Bundle 'scrooloose/syntastic'
-"Bundle 'Valloric/YouCompleteMe'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'Valloric/YouCompleteMe'
 
-"Bundle "kchmck/vim-coffee-script"
-Bundle 'vim-scripts/lbdbq'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-"Bundle 'gregsexton/MatchTag'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'vim-scripts/git-time-lapse'
-Bundle 'vim-scripts/DrawIt'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-markdown'
-Bundle "mikewest/vimroom"
-Bundle "pangloss/vim-javascript"
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'vim-scripts/VisIncr'
-"Bundle 'triglav/vim-visual-increment'
-Bundle 'tpope/vim-speeddating'
-
-
-"Bundle 'FredKSchott/CoVim'
-Bundle 'guns/xterm-color-table.vim'
+"Plugin 'kchmck/vim-coffee-script'
+Plugin 'vim-scripts/lbdbq'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+"Plugin 'gregsexton/MatchTag'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'vim-scripts/git-time-lapse'
+Plugin 'vim-scripts/DrawIt'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'mikewest/vimroom'
+Plugin 'pangloss/vim-javascript'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'vim-scripts/VisIncr'
+"Plugin 'triglav/vim-visual-increment'
+Plugin 'tpope/vim-speeddating'
 
 
-Bundle 'AndrewRadev/splitjoin.vim'
-Bundle 'kbairak/TurboMark'
+"Plugin 'FredKSchott/CoVim'
+Plugin 'guns/xterm-color-table.vim'
 
-"Bundle 'Rykka/colorv.vim'
-"Bundle 'suan/vim-instant-markdown'
-"Bundle 'wincent/Command-T'
-"Bundle 'vim-scripts/desert-warm-256'
-"Bundle 'kien/ctrlp.vim'
+
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'kbairak/TurboMark'
+
+"Plugin 'Rykka/colorv.vim'
+"Plugin 'suan/vim-instant-markdown'
+"Plugin 'wincent/Command-T'
+"Plugin 'vim-scripts/desert-warm-256'
+"Plugin 'kien/ctrlp.vim'
 "=================================
 
+call vundle#end()
 filetype plugin indent on
 "}}}
