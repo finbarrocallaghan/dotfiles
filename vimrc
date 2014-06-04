@@ -89,6 +89,7 @@ set smarttab
 set expandtab
 set backspace=2
 set textwidth=80
+filetype plugin indent on
 
 "}}}
 
@@ -139,7 +140,6 @@ endfunction
 nnoremap <leader>dw :call TrimWhiteSpace()<CR>
 
 
-
 " Space to toggle folds.
 nmap <leader><Space> za
 vmap <leader><Space> za
@@ -152,6 +152,10 @@ nmap <silent> <leader>v :so ~/.vimrc<CR>
 nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>nu :set nu!<CR>
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
+
+nmap <silent> <leader>bd :bd<CR>:bn<CR>
+
+noremap <leader>c a<C-X><C-S>
 
 "}}}
 
@@ -290,8 +294,7 @@ Bundle "vim-scripts/Rainbow-Parentheses-Improved"
 
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
 "{{{=============================
-let g:LatexBox_latexmk_options = '-pvc -pdf -synctex=1'
-
+"let g:LatexBox_latexmk_options = '-pvc -pdf -synctex=1'
 "}}}
 
 Bundle 'Lokaltog/vim-easymotion'
@@ -300,6 +303,9 @@ let g:EasyMotion_leader_key =  '<Space>'
 nmap s <Space>w
 nmap S <Space>b
 "}}}
+
+"Bundle 'ivanov/vim-ipython'
+Bundle 'vim-scripts/autoswap.vim'
 
 
 "Bundle 'techlivezheng/vim-plugin-minibufexpl'
@@ -349,7 +355,8 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'guns/xterm-color-table.vim'
 
 
-
+Bundle 'AndrewRadev/splitjoin.vim'
+Bundle 'kbairak/TurboMark'
 
 "Bundle 'Rykka/colorv.vim'
 "Bundle 'suan/vim-instant-markdown'
@@ -359,4 +366,4 @@ Bundle 'guns/xterm-color-table.vim'
 "=================================
 
 filetype plugin indent on
-" }}}
+"}}}
