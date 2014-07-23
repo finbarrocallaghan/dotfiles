@@ -17,14 +17,14 @@ endif
 
 "ui -------------------------------------------------------------------------{{{
 
-set shell=/bin/zsh
+"set shell=/bin/zsh
 set laststatus=2
 set fillchars=""
 set encoding=utf-8
 set synmaxcol=2048
 set showcmd
 set number
-set colorcolumn=81
+"set colorcolumn=81
 "set winheight=10
 
 "}}}
@@ -66,7 +66,7 @@ set hidden
 set confirm
 
 set dictionary=/usr/share/dict/words
-set undofile
+"set undofile
 
 "}}}
 
@@ -187,7 +187,7 @@ if has("gui_qt")
     au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} call DistractionFreeWriting()
     function! DistractionFreeWriting()
         colorscheme iawriter
-        set colorcolumn=0
+        "set colorcolumn=0
         set background=light
         "set fuoptions=background:#00f5f6f6
         set guioptions-=r
@@ -218,11 +218,11 @@ nmap <silent> <leader>gci :Gcommit<CR>
 nmap <silent> <leader>gl :Glog<CR>
 "}}}
 
-Plugin 'sjbach/lusty'
+"Plugin 'sjbach/lusty'
 "{{{=================
-let g:LustyJugglerShowKeys   = 1
-let g:LustyJugglerAltTabMode = 1
-nmap <silent> <c-b> :LustyJuggler<CR>
+"let g:LustyJugglerShowKeys   = 1
+"let g:LustyJugglerAltTabMode = 1
+"nmap <silent> <c-b> :LustyJuggler<CR>
 "}}}
 
 Plugin 'nathanaelkane/vim-indent-guides'
