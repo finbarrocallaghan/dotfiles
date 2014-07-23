@@ -1,6 +1,6 @@
 #.zshrc
 
-pri_color='blue'
+pri_color='black'
 sec_color='yellow'
 
 #LANG="en_IE.utf8"
