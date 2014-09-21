@@ -9,10 +9,10 @@ mkdir -p ~/.vim/colors
 mkdir -p ~/.vim/ftplugin/gitcommit
 mkdir -p ~/.vim/ftplugin/mail
 
-ln -s ~/.dotfiles/vimrc ~/.vimrc
-ln -s ~/.dotfiles/vim/colors/candy.vim ~/.vim/colors/candy.vim
-ln -s ~/.dotfiles/vim/ftplugin/gitcommit/gitcommit.vim ~/.vim/ftplugin/gitcommit/gitcommit.vim
-ln -s ~/.dotfiles/vim/ftplugin/mail/mail.vim ~/.vim/ftplugin/mail/mail.vim
+ln -si ~/.dotfiles/vimrc ~/.vimrc
+ln -si ~/.dotfiles/vim/colors/candy.vim ~/.vim/colors/candy.vim
+ln -si ~/.dotfiles/vim/ftplugin/gitcommit/gitcommit.vim ~/.vim/ftplugin/gitcommit/gitcommit.vim
+ln -si ~/.dotfiles/vim/ftplugin/mail/mail.vim ~/.vim/ftplugin/mail/mail.vim
 
 #somehow i'd like to install all the bundles etc without opening vim
 #but for now.. after a ,bi inside vim..
@@ -22,17 +22,17 @@ wget -nc -P ~/.config/fontconfig/conf.d/ https://github.com/Lokaltog/powerline/r
 fc-cache -vf ~/.fonts/
 
 #tmux
-echo "ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf"
-ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+echo "ln -si ~/.dotfiles/tmux.conf ~/.tmux.conf"
+ln -si ~/.dotfiles/tmux.conf ~/.tmux.conf
 
 #git
-echo "ln -s ~/.dotfiles/gitconfig ~/.gitconfig"
-ln -s ~/.dotfiles/gitconfig ~/.gitconfig
+echo "ln -si ~/.dotfiles/gitconfig ~/.gitconfig"
+ln -si ~/.dotfiles/gitconfig ~/.gitconfig
 
 #zsh
-echo "ln -s ~/.dotfiles/zshrc ~/.zshrc"
-ln -s ~/.dotfiles/zshrc ~/.zshrc
+echo "ln -si ~/.dotfiles/zshrc ~/.zshrc"
+ln -si ~/.dotfiles/zshrc ~/.zshrc
 
 #inputrc
-echo "ln -s ~/.dotfiles/inputrc ~/.inputrc"
-ln -s ~/.dotfiles/inputrc ~/.inputrc
+echo "ln -si ~/.dotfiles/inputrc ~/.inputrc"
+ln -si ~/.dotfiles/inputrc ~/.inputrc
