@@ -1,7 +1,7 @@
 #.zshrc
 
-pri_color='green'
-sec_color='yellow'
+pri_color='yellow'
+sec_color='blue'
 
 #LANG="en_IE.utf8"
 #LC_ALL="en_IE.utf8"
