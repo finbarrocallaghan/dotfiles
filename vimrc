@@ -11,6 +11,7 @@ set t_Co=256
 if $TERM=='screen-256color'
   autocmd BufEnter * let &titlestring = "[".expand("%:t") ."]"
   exe "set title t_ts=\<ESC>k t_fs=\<ESC>\\"
+  let &titleold = "zsh"
 endif
 
 "}}}
