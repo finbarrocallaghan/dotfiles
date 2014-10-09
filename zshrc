@@ -6,6 +6,8 @@ sec_color='blue'
 #LANG="en_IE.utf8"
 #LC_ALL="en_IE.utf8"
 
+#TERM=xterm-256color
+
 if [ -d ~/.zsh/completions ]; then
 fpath=($fpath ~/.zsh/completions)
 fi
@@ -80,7 +82,6 @@ zstyle ':vcs_info:*' stagedstr '^'
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' enable git hg
 zstyle ':vcs_info:*' actionformats  '%b%c%u|%a '
-#zstyle ':vcs_info:*' formats        "%{$fg[$sec_color]%}%b%c%F{red}%u%f "
 zstyle ':vcs_info:*' formats        "%{$fg[$sec_color]%}%b%F{red}%c%u%f "
 precmd() { vcs_info }
 
@@ -88,7 +89,7 @@ precmd() { vcs_info }
 #%F (%f) Start (stop) using a different foreground colour
 PROMPT='%F{$pri_color}%B%c/%f ${vcs_info_msg_0_}%(!.#.$)%b '
 #PROMPT='%F{$pri_color}%B%c/%f %(!.#.$)%b '
-RPROMPT='${return_code}%B%F{$pri_color}[%f%b%*%B%F{$pri_color}]%f$(todo_count)'
+RPROMPT='${return_code}%B%F{$pri_color}[%f%b%*%B%F{$pri_color}]%f'
 
 
 #-------
@@ -136,10 +137,12 @@ bindkey '\ee' edit-command-line
 
 bindkey -M viins '^O' copy-prev-shell-word
 bindkey '^P' push-line
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+
 bindkey '^F' history-incremental-search-backward
 bindkey '^G' history-incremental-search-forward
+
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
 
 #---
 #git
@@ -161,24 +164,7 @@ compdef _git gst=git-status
 alias gco='git checkout'
 compdef _git gco=git-checkout
 
-
 return_code="%(?..%B%F{$pri_color}[%F{red}%?%F{$pri_color}]%f)"
-
-todo_count(){
-  if $(which todo.sh &> /dev/null)
-    then
-      num=$(echo $(todo.sh -p ls | grep "^[0-9]" | wc -l))
-      let todos=num
-      if [ $todos != 0 ]
-        then
-          echo "%F{$pri_color}[-%F{red}$todos%F{$pri_color}-]%f"
-      else
-        echo ""
-          fi
-  else
-    echo ""
-      fi
-}
 
 if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

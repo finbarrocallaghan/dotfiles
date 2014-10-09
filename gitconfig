@@ -29,3 +29,5 @@
   r    = "reset"
   ds   = "diff --stat"
   d    = "diff"
+[push]
+	default = simple
