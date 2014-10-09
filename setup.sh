@@ -35,7 +35,7 @@ ln -si ~/.dotfiles/zshrc ~/.zshrc
 
 touch ~/.zshrc.local
 mkdir -p ~/.zsh
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/
+git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
 #inputrc
 echo "ln -si ~/.dotfiles/inputrc ~/.inputrc"
