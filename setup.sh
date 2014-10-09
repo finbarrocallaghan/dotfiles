@@ -9,6 +9,8 @@ mkdir -p ~/.vim/colors
 mkdir -p ~/.vim/ftplugin/gitcommit
 mkdir -p ~/.vim/ftplugin/mail
 
+#for vim.. vim-repeat maps to <C-U> to some silliness x(
+
 ln -si ~/.dotfiles/vimrc ~/.vimrc
 ln -si ~/.dotfiles/vim/colors/candy.vim ~/.vim/colors/candy.vim
 ln -si ~/.dotfiles/vim/ftplugin/gitcommit/gitcommit.vim ~/.vim/ftplugin/gitcommit/gitcommit.vim

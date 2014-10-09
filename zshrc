@@ -1,12 +1,10 @@
 #.zshrc
 
-pri_color='black'
-sec_color='yellow'
+pri_color='yellow'
+sec_color='blue'
 
 #LANG="en_IE.utf8"
 #LC_ALL="en_IE.utf8"
-
-TERM=xterm-256color
 
 if [ -d ~/.zsh/completions ]; then
 fpath=($fpath ~/.zsh/completions)
@@ -185,6 +183,29 @@ todo_count(){
 if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+ealiases=()
+
+function ealias()
+{
+alias $1
+ealiases+=(${1%%\=*})
+}
+
+function expand-ealias()
+{
+if [[ $LBUFFER =~ "(^|[;|&])\s*(${(j:|:)ealiases})\$" ]]; then
+    zle _expand_alias
+    zle expand-word
+fi
+zle magic-space
+}
+
+zle -N expand-ealias
+
+bindkey -M viins ' '    expand-ealias
+bindkey -M viins '^ '   magic-space     # control-space to bypass completion
+bindkey -M isearch " "  magic-space # normal space during searches
 
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
