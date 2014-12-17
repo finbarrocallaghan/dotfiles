@@ -25,7 +25,7 @@ set encoding=utf-8
 set synmaxcol=2048
 set showcmd
 set number
-"set colorcolumn=81
+set colorcolumn=81
 "set winheight=10
 
 "}}}
@@ -151,7 +151,7 @@ nmap <silent> <leader>s :set spell!<CR>
 nmap <silent> <leader>ev :e ~/.vimrc<CR>
 nmap <silent> <leader>v :so ~/.vimrc<CR>
 nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
-nmap <silent> <leader>nu :set nu!<CR>
+nmap <silent> <leader>n :set nu!<CR>
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
 
 nmap <silent> <leader>bd :bd<CR>:bn<CR>
@@ -369,3 +369,8 @@ Plugin 'kbairak/TurboMark'
 call vundle#end()
 filetype plugin indent on
 "}}}
+
+
+if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
