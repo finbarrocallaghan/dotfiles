@@ -367,10 +367,11 @@ Plugin 'kbairak/TurboMark'
 "=================================
 
 call vundle#end()
-filetype plugin indent on
 "}}}
 
 
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+
+filetype plugin indent on
