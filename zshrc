@@ -1,7 +1,7 @@
 #.zshrc
 
-pri_color='yellow'
-sec_color='blue'
+pri_color='black'
+sec_color='yellow'
 
 #LANG="en_IE.utf8"
 #LC_ALL="en_IE.utf8"
@@ -166,13 +166,38 @@ compdef _git gco=git-checkout
 
 return_code="%(?..%B%F{$pri_color}[%F{red}%?%F{$pri_color}]%f)"
 
-if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ealiases=()
+
+function ealias()
+{
+alias $1
+ealiases+=(${1%%\=*})
+}
+
+function expand-ealias()
+{
+if [[ $LBUFFER =~ "(^|[;|&])\s*(${(j:|:)ealiases})\$" ]]; then
+    zle _expand_alias
+    zle expand-word
 fi
+zle magic-space
+}
+
+zle -N expand-ealias
+
+bindkey -M viins ' '    expand-ealias
+bindkey -M viins '^ '   magic-space     # control-space to bypass completion
+bindkey -M isearch " "  magic-space # normal space during searches
+
 
 if [ -f ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
+
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
 
 if [ -f  ~/.zsh/zsh_functions ]; then
   source ~/.zsh/zsh_functions

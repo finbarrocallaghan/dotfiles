@@ -141,6 +141,7 @@ endfunction
 nnoremap <leader>dw :call TrimWhiteSpace()<CR>
 
 
+
 " Space to toggle folds.
 nmap <leader><Space> za
 vmap <leader><Space> za
@@ -153,10 +154,12 @@ nmap <silent> <leader>v :so ~/.vimrc<CR>
 nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>nu :set nu!<CR>
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
+nmap <silent> <leader>n :set invnumber<CR>
 
 nmap <silent> <leader>bd :bd<CR>:bn<CR>
 
 noremap <leader>c a<C-X><C-S>
+
 
 "}}}
 
