@@ -4,14 +4,22 @@
 set nocompatible
 
 "color ----------------------------------------------------------------------{{{
+"
+"set
 
 colorscheme candy
 set background=dark
 set t_Co=256
+
+function! ResetTitle()
+    exec "set title t_ts='' t_fs=''"
+    exec ":!echo -e '\033kzsh\033\\'\<CR>"
+endfunction
+
 if $TERM=='screen-256color'
   autocmd BufEnter * let &titlestring = "[".expand("%:t") ."]"
   exe "set title t_ts=\<ESC>k t_fs=\<ESC>\\"
-  let &titleold = "zsh"
+  au VimLeave * silent call ResetTitle()
 endif
 
 "}}}
@@ -151,12 +159,11 @@ nmap <silent> <leader>s :set spell!<CR>
 nmap <silent> <leader>ev :e ~/.vimrc<CR>
 nmap <silent> <leader>v :so ~/.vimrc<CR>
 nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
-nmap <silent> <leader>nu :set nu!<CR>
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
-
+nmap <silent> <leader>n :set nu!<CR>
 nmap <silent> <leader>bd :bd<CR>:bn<CR>
-
-noremap <leader>c a<C-X><C-S>
+nmap <leader>c a<C-X><C-S>
+nmap <silent> <leader>l :!tmux send-keys -t bottom 'pdflatex thesis' C-m<CR>
 
 "}}}
 

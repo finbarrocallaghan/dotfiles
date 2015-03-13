@@ -104,6 +104,10 @@ alias tl='tmux ls'
 alias ta='tmux attach -t'
 alias th='teamocil --here'
 
+function tms {
+  args=$@
+  tmux send-keys -t bottom "$args" C-m
+}
 
 #-------
 #general
