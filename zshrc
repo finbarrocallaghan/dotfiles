@@ -92,18 +92,11 @@ PROMPT='%F{$pri_color}%B%c/%f ${vcs_info_msg_0_}%(!.#.$)%b '
 RPROMPT='${return_code}%B%F{$pri_color}[%f%b%*%B%F{$pri_color}]%f'
 
 
-#-------
-#tmux
-#-------
-alias tmux='tmux -u2'
-alias t='tmux -u2'
-alias ts='tmux new -s'
 
-alias tsh='tmux new -s $(basename $PWD)'
-alias tl='tmux ls'
-alias ta='tmux attach -t'
-alias th='teamocil --here'
-
+function tms {
+  args=$@
+  tmux send-keys -t bottom "$args" C-m
+}
 
 #-------
 #general
@@ -124,8 +117,8 @@ alias -g G='| grep -'
 alias -g GV='| grep -v -'
 alias -g L='| less'
 
-alias to='todo.sh'
 alias gvim='gvim -geom 82x35'
+alias tmux='tmux -u2'
 
 #-------
 #vi mode
@@ -188,6 +181,48 @@ zle -N expand-ealias
 bindkey -M viins ' '    expand-ealias
 bindkey -M viins '^ '   magic-space     # control-space to bypass completion
 bindkey -M isearch " "  magic-space # normal space during searches
+
+
+
+
+#----------
+#ealiases
+#----------
+
+ealiases=()
+
+function ealias()
+{
+alias $1
+ealiases+=(${1%%\=*})
+}
+
+function expand-ealias()
+{
+if [[ $LBUFFER =~ "(^|[;|&])\s*(${(j:|:)ealiases})\$" ]]; then
+    zle _expand_alias
+    zle expand-word
+fi
+zle magic-space
+}
+
+zle -N expand-ealias
+
+bindkey -M viins ' '    expand-ealias
+bindkey -M viins '^ '   magic-space # control-space to bypass completion
+bindkey -M isearch " "  magic-space # normal space during searches
+
+
+#------------
+#tmux
+#  (ealiases)
+#------------
+
+ealias ts='tmux new -s'
+ealias tsh='tmux new -s $(basename $PWD)'
+ealias tl='tmux ls'
+ealias ta='tmux attach -t'
+
 
 
 if [ -f ~/.zshrc.local ]; then
