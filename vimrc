@@ -217,15 +217,6 @@ endif
 
 
 
-Plugin 'tpope/vim-fugitive'
-"{{{======================
-nmap <silent> <leader>gd :Gdiff<CR>
-nmap <silent> <leader>gs :Gstatus<CR>
-nmap <silent> <leader>gw :Gwrite<CR>
-nmap <silent> <leader>ga :Gadd<CR>
-nmap <silent> <leader>gci :Gcommit<CR>
-nmap <silent> <leader>gl :Glog<CR>
-"}}}
 
 "Plugin 'sjbach/lusty'
 "{{{=================
@@ -336,28 +327,40 @@ Plugin 'vim-scripts/autoswap.vim'
 "let g:bufferline_echo=0
 "set statusline=%{bufferline#generate_string()}
 
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-fugitive'
+"{{{======================
+nmap <silent> <leader>gd :Gdiff<CR>
+nmap <silent> <leader>gs :Gstatus<CR>
+nmap <silent> <leader>gw :Gwrite<CR>
+nmap <silent> <leader>ga :Gadd<CR>
+nmap <silent> <leader>gci :Gcommit<CR>
+nmap <silent> <leader>gl :Glog<CR>
+"}}}
 
 "Plugin 'scrooloose/syntastic'
 "Plugin 'Valloric/YouCompleteMe'
 
 "Plugin 'kchmck/vim-coffee-script'
 Plugin 'vim-scripts/lbdbq'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
+
+
 "Plugin 'gregsexton/MatchTag'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'vim-scripts/git-time-lapse'
 Plugin 'vim-scripts/DrawIt'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-markdown'
 Plugin 'mikewest/vimroom'
 Plugin 'pangloss/vim-javascript'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'vim-scripts/VisIncr'
 "Plugin 'triglav/vim-visual-increment'
-Plugin 'tpope/vim-speeddating'
 
 
 "Plugin 'FredKSchott/CoVim'
