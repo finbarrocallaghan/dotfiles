@@ -1,4 +1,3 @@
-#do not make noise
 set bell-style noise
 
 set editing-mode vi

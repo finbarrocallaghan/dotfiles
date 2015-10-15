@@ -24,3 +24,5 @@ hi LineNr           ctermfg=240
 hi CursorLineNr     ctermfg=240
 hi ColorColumn      ctermbg=234
 hi ExtraWhiteSpace  ctermbg=234
+hi trailingWhitespace ctermbg=234
+

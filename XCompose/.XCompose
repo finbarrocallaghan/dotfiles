@@ -1,0 +1,11 @@
+include "%L"
+
+<Multi_key> <o> <underscore> <o>        : "ಠ_ಠ" # look of disapproval
+<Multi_key> <s> <r>                     : "¯\_(ツ)_/¯" # shr
+<Multi_key> <r> <a> <g> <e>             : "(ノಠ益ಠ)ノ" # rage
+<Multi_key> <f> <t>                     : "(╯°□°）╯︵ ┻━┻" #table flip
+<Multi_key> <t> <k>                     : "ᕙ(⇀‸↼‶)ᕗ"  # think
+<Multi_key> <t> <k>                     : "ᕙ(⇀‸↼‶)ᕗ"  # think
+<Multi_key> <y> <u>                     : "ლ(ಠ益ಠლ)" # y u no?
+<Multi_key> <w> <i> <n>                 : "(/◔ ◡ ◔)/" # win
+<Multi_key> <c> <y>                     : ".·´¯`(>▂<)´¯`·.  " # cry

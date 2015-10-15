@@ -34,6 +34,7 @@ set synmaxcol=2048
 set showcmd
 set number
 set colorcolumn=81
+set lazyredraw
 "set winheight=10
 
 "}}}
@@ -75,7 +76,7 @@ set hidden
 set confirm
 
 set dictionary=/usr/share/dict/words
-"set undofile
+set undofile
 
 "}}}
 
@@ -163,7 +164,7 @@ nmap <silent> <leader>p  :set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>n :set nu!<CR>
 nmap <silent> <leader>ul :t.\|s/./=/g\|set nohls<cr>
 nmap <silent> <leader>n :set nu!<CR>
-nmap <silent> <leader>bd :bd<CR>:bn<CR>
+nmap <silent> <leader>bD :bd<CR>:bn<CR>
 nmap <leader>c a<C-X><C-S>
 nmap <silent> <leader>l :!tmux send-keys -t bottom 'pdflatex thesis' C-m<CR>
 
@@ -315,6 +316,11 @@ nmap s <Space>w
 nmap S <Space>b
 "}}}
 
+Plugin 'majutsushi/tagbar'
+"{{{======================
+nnoremap <F8> :TagbarOpen fj<CR>
+"}}}
+
 "Plugin 'ivanov/vim-ipython'
 Plugin 'vim-scripts/autoswap.vim'
 
@@ -360,7 +366,13 @@ Plugin 'jnwhiteh/vim-golang'
 Plugin 'vim-scripts/VisIncr'
 "Plugin 'triglav/vim-visual-increment'
 Plugin 'tpope/vim-speeddating'
+Plugin 'ConradIrwin/vim-bracketed-paste'
+Plugin 'vim-scripts/taglist.vim'
 
+
+
+
+Plugin 'duganchen/vim-soy'
 
 "Plugin 'FredKSchott/CoVim'
 Plugin 'guns/xterm-color-table.vim'
@@ -379,9 +391,10 @@ Plugin 'kbairak/TurboMark'
 call vundle#end()
 "}}}
 
-
 if filereadable(expand("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
 
 filetype plugin indent on
+
+
