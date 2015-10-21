@@ -11,8 +11,8 @@ to uninstall dotfiles:
 
 simples (/◔ ◡ ◔)/
 
-
 this sometimes fixes fonts for powerline.. ᕙ(⇀‸↼‶)ᕗ
+
 ```
 wget -nc -P ~/.fonts/ https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
 wget -nc -P ~/.config/fontconfig/conf.d/ https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
