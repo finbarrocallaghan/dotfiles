@@ -4,3 +4,4 @@ zsh/.zsh/cache
 vim/.vim/tmp/*
 vim/.vim/backup/*
 vim/.vim/bundle/*
+vim/.vim/cache/*
