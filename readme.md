@@ -3,6 +3,8 @@ dotfiles
 
 installing dotfiles:
 
+`git clone --recursive https//github.com/finbarrocallaghan/dotfiles.git`
+
 `for dir (*(/)) stow -v $dir`
 
 to uninstall dotfiles:
