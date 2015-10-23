@@ -1,2 +1,6 @@
 *.local
 *.un~
+zsh/.zsh/cache
+vim/.vim/tmp/*
+vim/.vim/backup/*
+vim/.vim/bundle/*

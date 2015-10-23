@@ -75,15 +75,16 @@ zstyle ':vcs_info:*' stagedstr '^'
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' enable git hg p4
 zstyle ':vcs_info:*' actionformats  '%b%c%u|%a '
-zstyle ':vcs_info:*' formats   $'%{\e[0;94m%}%b%{\e[0m%}%{%F{red}%}%c%u%f '
+zstyle ':vcs_info:*' formats $'%{\e[0;93m%}%b%{\e[0m%}%{%F%{\e[0;91m%}%}%c%u %f'
 precmd() { vcs_info }
-# %{\e[0;93m%}
-# %{\e[0m%}
 
+return_code=$'%(?..%B%F %{\e[0;94m%}[%F%{\e[0;91m%}%?%F%{\e[0;94m%}]%f)'
+
+# figuring out colour codes: for f ({01..99}) print "\e[0;${f}m\\\e[0;${f}m"
 #B (%b) Start (stop) boldface mode.
 #%F (%f) Start (stop) using a different foreground colour
-PROMPT=$'%{\e[0;92m%}%B%c/ %{\e[0m%}${vcs_info_msg_0_}%(!.#.$)%b '
-#RPROMPT='${return_code}%B%F{$pri_color}[%f%b%*%B%F{$pri_color}]%f'
+PROMPT=$'%{\e[0;94m%}%B%c/ %{\e[0m%}${vcs_info_msg_0_}%(!.#.$) %b'
+RPROMPT=$'${return_code}%B%F%{\e[0;94m%}[%f%b%*%B%F%{\e[0;94m%}]%f'
 
 #-------
 #general
@@ -143,7 +144,6 @@ compdef _git gst=git-status
 alias gco='git checkout'
 compdef _git gco=git-checkout
 
-return_code="%(?..%B%F{$pri_color}[%F{red}%?%F{$pri_color}]%f)"
 
 #----------
 #ealiases
