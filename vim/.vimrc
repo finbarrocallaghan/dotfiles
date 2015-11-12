@@ -43,6 +43,7 @@ set lazyredraw
 
 set backup
 set backupdir=~/.vim/backup
+set undodir=~/.vim/undo
 set directory=~/.vim/tmp
 
 "}}}

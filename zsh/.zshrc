@@ -78,13 +78,13 @@ zstyle ':vcs_info:*' actionformats  '%b%c%u|%a '
 zstyle ':vcs_info:*' formats $'%{\e[0;93m%}%b%{\e[0m%}%{%F%{\e[0;91m%}%}%c%u %f'
 precmd() { vcs_info }
 
-return_code=$'%(?..%B%F %{\e[0;92m%}[%F%{\e[0;91m%}%?%F%{\e[0;92m%}]%f)'
+return_code=$'%(?..%B%F %{\e[0;94m%}[%F%{\e[0;91m%}%?%F%{\e[0;94m%}]%f)'
 
 # figuring out colour codes: for f ({01..99}) print "\e[0;${f}m\\\e[0;${f}m"
 #B (%b) Start (stop) boldface mode.
 #%F (%f) Start (stop) using a different foreground colour
-PROMPT=$'%{\e[0;92m%}%B%c/ %{\e[0m%}${vcs_info_msg_0_}%(!.#.$) %b'
-RPROMPT=$'${return_code}%B%F%{\e[0;92m%}[%f%b%*%B%F%{\e[0;92m%}]%f'
+PROMPT=$'%{\e[0;94m%}%B%c/ %{\e[0m%}${vcs_info_msg_0_}%(!.#.$) %b'
+RPROMPT=$'${return_code}%B%F%{\e[0;94m%}[%f%b%*%B%F%{\e[0;94m%}]%f'
 
 #-------
 #general
